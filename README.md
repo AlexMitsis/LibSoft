@@ -4,8 +4,12 @@ The final project will be contained in the C# branch.
 
 Contributors:
 
-Lefteris2310
+AlexMitsis: Main, Member
 
-MariannaEconomidou
+Lefteris2310: Author, Book, LibraryData  
 
-stella-dotgr
+MariannaEconomidou: SystemNotification (+Penalty), BookLending, Message
+
+stella-dotgr: Librarian
+
+Georgia: Borrower
