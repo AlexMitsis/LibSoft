@@ -4,7 +4,7 @@ The final project will be contained in the C# branch.
 
 Contributors:
 
-AlexMitsis: Main, Member
+AlexMitsis: Member
 
 Lefteris2310: Author, Book, LibraryData  
 
