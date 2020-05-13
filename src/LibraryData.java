@@ -25,7 +25,7 @@ public class LibraryData {
 	}
 
 	public void BookDiscarding(Book b)
-    {
+    { //ψαχνει το βιβλιο βασει σειριακου book.code
     	/*public void BookDiscarding(String Title){
     	 *
     	   for(Book : book : ListOfBooks)
@@ -38,7 +38,7 @@ public class LibraryData {
     	 */
     }
 	
-	private Member createMembership()//void?
+	private Member createMembership()//void?nai
 	{
 		String username = JOptionPane.showInputDialog("Onoma kainourgioy xrhsth: ");
 		String password = JOptionPane.showInputDialog("Kwdikos kainourgiou xrhsth: ");
@@ -79,10 +79,10 @@ public class LibraryData {
 	 * 		}
 	 * 
 	 * }
-	 */
+	 
 		
 	
-	
+	ψαχνει βασει ονοματος ,επιστρεφει το αντικειμενο ολοκληρο public book,γιατι εβαλες ιντ;
 	public int searchBook(String Title)
 	{
 		for(Book : aBook : ListOfBooks)
@@ -139,7 +139,7 @@ public class LibraryData {
 	
 	/*methodos isuser den uparxei
 	 * 
-	 * 
+	 *//δεν τη χρειαζομαστε
 	*/
 	
 	

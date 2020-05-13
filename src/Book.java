@@ -131,7 +131,8 @@ public class Book {
 			borrowed = true;
 	}
 	
-	public void commentBook(Member person)
+	public void commentBook(Member person)//to sxolio tha einai string se morfh "o xrhsths person.name eggrapse sxolio"
+	//epishs tha pernei orisma kai to mhnyma giati ayth h methodos tha kaleitai mesw koumpiou
 	{//Xwris orisma to person?Nomizw den thelei orisma
 		/*
 		
@@ -143,7 +144,7 @@ public class Book {
 		
 	}
 	
-	public void rateBook(Member person)
+	public void rateBook(Member person)//den xreiazetai ton person
 	{
 		/*
 		 * public void rateBook(float rate)
