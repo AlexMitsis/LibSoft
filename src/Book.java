@@ -166,13 +166,4 @@ public class Book {
 		 * 
 		 */
 	}
-	
-	public void toReadList(Member person)
-	{
-		/*
-		 * einai methodos pou tin ulopoiei o
-		 * borrower nomizw
-		 */
-	}
-	
 }
