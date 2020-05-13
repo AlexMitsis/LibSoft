@@ -2,16 +2,29 @@ import javax.swing.*;
 import java.util.*;
 
 public class LibraryData {
-	private ArrayList<Borrower> ListOfBorrowers = new ArrayList<Borrower>;
-	private ArrayList<Borrower> PenaltyList = new ArrayList<Borrower>;
-	private ArrayList<Librarian> ListOfLibrarians = new ArrayList<Librarian>;
-	private ArrayList<Book> ListOfBooks = new ArrayList<Book>;
-	private ArrayList<Book> DelayedBooks = new ArrayList<Book>;
-	private ArrayList<BookLending> BorrowedBooks = new ArrayList<Book>;
-	private ArrayList<Author> Authors = new ArrayList<Author>;
+	private ArrayList<Borrower> ListOfBorrowers = new ArrayList<Borrower>();
+	private ArrayList<Borrower> PenaltyList = new ArrayList<Borrower>();
+	private ArrayList<Librarian> ListOfLibrarians = new ArrayList<Librarian>();
+	private ArrayList<Book> ListOfBooks = new ArrayList<Book>();
+	
+	private ArrayList<Book> DelayedBooks = new ArrayList<Book>();
+	private ArrayList<BookLending> BorrowedBooks = new ArrayList<BookLending>();
+	private ArrayList<Author> Authors = new ArrayList<Author>();
 	
 	
-    public void BookDiscarding(Book b)
+	
+	
+	public ArrayList<Book> getListOfBooks() 
+	{
+		return ListOfBooks;
+	}
+	
+    public void setListOfBooks(ArrayList<Book> listOfBooks) 
+    {
+		ListOfBooks = listOfBooks;
+	}
+
+	public void BookDiscarding(Book b)
     {
     	/*public void BookDiscarding(String Title){
     	 *
