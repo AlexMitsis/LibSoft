@@ -4,16 +4,14 @@ import java.util.*;
 public class LibraryData {
 	private ArrayList<Borrower> ListOfBorrowers = new ArrayList<Borrower>();
 	private ArrayList<Borrower> PenaltyList = new ArrayList<Borrower>();
-	private ArrayList<Librarian> ListOfLibrarians = new ArrayList<Librarian>();
+	//private ArrayList<Librarian> ListOfLibrarians = new ArrayList<Librarian>();
 	private ArrayList<Book> ListOfBooks = new ArrayList<Book>();
 	
 	private ArrayList<Book> DelayedBooks = new ArrayList<Book>();
 	private ArrayList<BookLending> BorrowedBooks = new ArrayList<BookLending>();
 	private ArrayList<Author> Authors = new ArrayList<Author>();
 	
-	
-	
-	
+
 	public ArrayList<Book> getListOfBooks() 
 	{
 		return ListOfBooks;
@@ -120,28 +118,37 @@ public class LibraryData {
 			System.out.println("Something happened.Please try again");
 		
 	}
-	
-	public ArrayList<Book> CreateSuggetsions(Borrower m)
+	 */
+	public ArrayList<Book> createSuggestions(Borrower m)
 	{
-		/*
-		 * m.printFavoriteList();
-		 *
-		 * etsi opws to skeftika itan na 
-		 * tupwsoume tin favoritelist tou borrower
-		 * kai 5 apo auta ta biblia na ta prosthesoume
-		 * stin lista twn protasewn.TH lista auth prepei
-		 * na thn dhmiourghsoume?Nai/oxi an ginetai etsi
-		 * 
-		 */
+		
+		
 		
 		
 	}
 	
-	/*methodos isuser den uparxei
-	 * 
-	 *//δεν τη χρειαζομαστε
-	*/
 	
+	//constructor
+	public LibraryData(ArrayList<Borrower> listOfBorrowers, ArrayList<Borrower> penaltyList,
+			ArrayList<Book> listOfBooks, ArrayList<Book> delayedBooks, ArrayList<BookLending> borrowedBooks,
+			ArrayList<Author> authors) {
+		
+		ListOfBorrowers = listOfBorrowers;
+		PenaltyList = penaltyList;
+		ListOfBooks = listOfBooks;
+		DelayedBooks = delayedBooks;
+		BorrowedBooks = borrowedBooks;
+		Authors = authors;
+	}
+
+	public ArrayList<Borrower> getListOfBorrowers() {
+		return ListOfBorrowers;
+	}
+
+	public void setListOfBorrowers(ArrayList<Borrower> listOfBorrowers) {
+		ListOfBorrowers = listOfBorrowers;
+	}
+
 	
 	
 }
