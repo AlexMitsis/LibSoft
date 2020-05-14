@@ -13,6 +13,7 @@ public class Book {
 	private Boolean borrowed = false;
 	private Borrower personWithBook;
 	private Scanner scanner = new Scanner(System.in);
+	private ArrayList<Borrower> pastBorrowers;
 	
 	
 	public Book(int code, String title, Author author, String category, int year, String language, float rating, String publisher)
@@ -26,6 +27,7 @@ public class Book {
 		this.rating = rating;
 		this.publisher = publisher;
 		comments = new ArrayList<String>();
+		pastBorrowers = new ArrayList<Borrower>;
 	}
 	
 	public String getCategory() {
@@ -117,18 +119,18 @@ public class Book {
 		 */
 	}
 	
-	public void requestBook(Member person)
+	public void borrowBook(Borrower person)
 	{
-		/*
-		 * 
-		 * epeidi einai me gui tin afisa etsi
-		 */
+		personWithBook = person
+		pastBorrowers.add(person)
 	}
 	
 	public void toggleAvailability()
 	{
 		if(borrowed = false)
 			borrowed = true;
+		else 
+			borrowed = false;
 	}
 	
 	public void commentBook(Member person)//to sxolio tha einai string se morfh "o xrhsths person.name eggrapse sxolio"
