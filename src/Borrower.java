@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Borrower extends Member{
@@ -5,6 +6,33 @@ public class Borrower extends Member{
 	private ArrayList<Book> favouriteList;
 	private ArrayList<Book> toReadList;
 	private ArrayList<Book> history;
+	private boolean ableToBorrow;
+	private int numberOfPenalties;
+	private LocalDate dateOfLastPenlty;
+	
+	
+	
+	
+	
+	
+	public LocalDate getDateOfLastPenlty() {
+		return dateOfLastPenlty;
+	}
+	public void setDateOfLastPenlty(LocalDate dateOfLastPenlty) {
+		this.dateOfLastPenlty = dateOfLastPenlty;
+	}
+	public int getNumberOfPenalties() {
+		return numberOfPenalties;
+	}
+	public void setNumberOfPenalties(int numberOfPenalties) {
+		this.numberOfPenalties = numberOfPenalties;
+	}
+	public boolean isAbleToBorrow() {
+		return ableToBorrow;
+	}
+	public void setAbleToBorrow(boolean ableToBorrow) {
+		this.ableToBorrow = ableToBorrow;
+	}
 	public ArrayList<Book> getHistory() {
 		return history;
 	}

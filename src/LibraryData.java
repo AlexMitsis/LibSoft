@@ -2,35 +2,30 @@ import javax.swing.*;
 import java.util.*;
 
 public class LibraryData {
-	private ArrayList<Borrower> ListOfBorrowers = new ArrayList<Borrower>();
-	private ArrayList<Borrower> PenaltyList = new ArrayList<Borrower>();
+	private ArrayList<Borrower> ListOfBorrowers ;
+	private ArrayList<Borrower> PenaltyList ;
 	//private ArrayList<Librarian> ListOfLibrarians = new ArrayList<Librarian>();
-	private ArrayList<Book> ListOfBooks = new ArrayList<Book>();
+	private ArrayList<Book> ListOfBooks;
+	private ArrayList<Borrower> WithPenalty;
+	private ArrayList<BookLending> DelayedBooks;
+	private ArrayList<BookLending> BorrowedBooks;
+	private ArrayList<Author> Authors;
 	
-	private ArrayList<Book> DelayedBooks = new ArrayList<Book>();
-	private ArrayList<BookLending> BorrowedBooks = new ArrayList<BookLending>();
-	private ArrayList<Author> Authors = new ArrayList<Author>();
-	
-	
-	//constructor
-	public LibraryData(ArrayList<Borrower> listOfBorrowers, ArrayList<Borrower> penaltyList,
-			ArrayList<Book> listOfBooks, ArrayList<Book> delayedBooks, ArrayList<BookLending> borrowedBooks,
-			ArrayList<Author> authors) {
-		
-		ListOfBorrowers = listOfBorrowers;
-		PenaltyList = penaltyList;
-		ListOfBooks = listOfBooks;
-		DelayedBooks = delayedBooks;
-		BorrowedBooks = borrowedBooks;
-		Authors = authors;
-	}
 
-	public ArrayList<Book> getListOfBooks() 
-	{
-		return ListOfBooks;
-	}
-	
-    	public void setListOfBooks(ArrayList<Book> listOfBooks) 
+       
+    	public ArrayList<Book> getListOfBooks() 
+    	{
+    		return ListOfBooks;
+    	}
+    	
+		public ArrayList<Borrower> getWithPenalty() {
+			return WithPenalty;
+		}
+
+		public void setWithPenalty(Borrower withPenalty) {
+			WithPenalty.add(withPenalty);/********/		}
+
+		public void setListOfBooks(ArrayList<Book> listOfBooks) 
     	{
 		ListOfBooks = listOfBooks;
     	}
@@ -43,18 +38,57 @@ public class LibraryData {
 		ListOfBorrowers = listOfBorrowers;
 	}	
 	
+	      
 	
-	public void BookDiscarding(int Code)
-    { //ψαχνει το βιβλιο βασει σειριακου book.code
-    	
-    	  for(Book  book : ListOfBooks)
-    	  {
-    	 	if(book.code=Code){
-    	  		ListOfBooks.delete(book); }
-    	  }
-    	 
-    }
-	
+    		
+    		 public void setDelayedBooks(ArrayList<BookLending> delayedBooks) {
+		DelayedBooks = delayedBooks;
+	}
+
+			public ArrayList<BookLending> getDelayedBooks() {
+				return DelayedBooks;
+			}
+
+			public ArrayList<Borrower> getPenaltyList() {
+    			return PenaltyList;
+    		}
+
+    		public void setPenaltyList(ArrayList<Borrower> penaltyList) {
+    			PenaltyList = penaltyList;
+    		}
+
+   
+    		public ArrayList<BookLending> getBorrowedBooks() {
+    			return BorrowedBooks;
+    		}
+
+    		public void setBorrowedBooks(ArrayList<BookLending> borrowedBooks) {
+    			BorrowedBooks = borrowedBooks;
+    		}
+
+    		public ArrayList<Author> getAuthors() {
+    			return Authors;
+    		}
+
+    		public void setAuthors(ArrayList<Author> authors) {
+    			Authors = authors;
+    		}
+    		
+    		
+    		
+    		
+    		public void BookDiscarding(int Code)
+    	    { //ψαχνει το βιβλιο βασει σειριακου book.code
+    	    	
+    	    	  for(Book  book : ListOfBooks)
+    	    	  {
+    	    	 	if(book.code=Code){
+    	    	  		ListOfBooks.delete(book); 
+    	    	  		
+    	    	  }
+    	    	 
+    	    }}
+    		
 	private void createMembership()//void?nai
 	{
 		String username = JOptionPane.showInputDialog("Onoma kainourgioy xrhsth: ");
@@ -143,7 +177,12 @@ public class LibraryData {
 			System.out.println("Something happened.Please try again");
 		
 	}
-	 //---------------------------------------------------------------------------------------------------------------------------------------------------//
+	
+	
+	
+
+
+	//---------------------------------------------------------------------------------------------------------------------------------------------------//
 	public ArrayList<Book> createSuggestions(Borrower m)
 	{
 		ArrayList<Book> suggest=null;
@@ -176,9 +215,7 @@ public class LibraryData {
 				   
 			   }
 			 }
-		//---------------------------------------------------------------------------------//
-		
-		
+	
 		
 		//------------collecting read books of same category from one borrower and setting recommendation score--------------------//
 	   ArrayList<Book> recs=null;
