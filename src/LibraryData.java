@@ -74,7 +74,7 @@ public class LibraryData {
 		
 	}
 	
-	public void terminateMembership(Borrower b)
+	public void terminateMembership(Borrower b) {
 	/*public void terminateMembership(String Username)
 	 * {
 	 * 		for(Borrower : aBorrower : ListOfBorrowers)
@@ -99,7 +99,7 @@ public class LibraryData {
 	 
 		
 	
-	ψαχνει βασει ονοματος ,επιστρεφει το αντικειμενο ολοκληρο public book,γιατι εβαλες ιντ;
+	//ψαχνει βασει ονοματος ,επιστρεφει το αντικειμενο ολοκληρο public book,γιατι εβαλες ιντ;
 	//ebala int gia na epistrefei ton kwdiko tou bibliou
 	public Book searchBook(String Title)
 	{
@@ -107,7 +107,7 @@ public class LibraryData {
 		
 		for(Book  aBook : ListOfBooks)
 		{
-			if(aBook.title=Title){
+			if(aBook.title=Title){ 
 				return aBook;
 				found = true;
 			}	
@@ -118,10 +118,10 @@ public class LibraryData {
 	
 	public ArrayList<Book> searchByFilter(String WantedCategory)
 	{
-		private ArrayList<Book> wantedCategoryBooks = new ArrayList<Book>;
+		 ArrayList<Book> wantedCategoryBooks = new ArrayList<Book>();
 		for(Book  aBook : ListOfBooks)
 		{
-			if(aBook.category=WantedCategory) {
+			if(aBook.category=WantedCategory) { ///DEN sygkrinei me = kai xreiazontai gettersss
 				wantedCategoryBooks.add(aBook);
 			}	
 		}
@@ -143,13 +143,103 @@ public class LibraryData {
 			System.out.println("Something happened.Please try again");
 		
 	}
-	 
+	 //---------------------------------------------------------------------------------------------------------------------------------------------------//
 	public ArrayList<Book> createSuggestions(Borrower m)
 	{
+		ArrayList<Book> suggest=null;
+		ArrayList<Book> readbooks=null;
+		ArrayList<Book> history=m.getHistory();
+		int size=history.size();//size of borrowers history
+		
+		//--------initialize books---------------------//checks if books are the same
+		if(size==0) {suggest=null;}
+		else if(size<=2) {int i=0;
+		   readbooks.add(history.get(i));
+		   i++;
+		   if(history.get(i).getCode()!=history.get(i-1).getCode())
+		   {readbooks.add(history.get(i));
+		   i++;}}
+		else { int i=0;
+			   readbooks.add(history.get(i));
+			   i++;
+			   if(history.get(i).getCode()!=history.get(i-1).getCode())
+			   {readbooks.add(history.get(i));
+			   i++;}
+			   if(i==2) {
+				  if(history.get(i).getCode()!=history.get(i-1).getCode()&&history.get(i).getCode()!=history.get(i-2).getCode())
+			         {readbooks.add(history.get(i));
+			           i++;}}                                          
+			   else {
+				   if(history.get(i).getCode()!=history.get(i-1).getCode())
+			          {readbooks.add(history.get(i));
+			           i++;}
+				   
+			   }
+			 }
+		//---------------------------------------------------------------------------------//
 		
 		
 		
+		//------------collecting read books of same category from one borrower and setting recommendation score--------------------//
+	   ArrayList<Book> recs=null;
+	   for(Book rbook:readbooks) {
+		ArrayList<Borrower> pastborrowers=rbook.getPastBorrowers();
 		
-	}
-	
+		    for(Borrower pastBorrower:pastborrowers)
+		    {
+		   
+		
+			for(Book book:pastBorrower.getHistory())
+			{   
+				if(book.getCategory().equalsIgnoreCase(rbook.getCategory())) //if it is of same genre
+				{
+					if(recs.indexOf(book)==-1)                               //and doesn't already exist in the list
+					{          
+			          recs.add(book);
+			        //initial rating
+			          book.setRecommendationscore(0.0);
+					  
+					 if(pastBorrower.getFavouriteList().indexOf(book)!=-1)          //if the book belongs to favorite list it gets extra 0.5 points
+					  {
+				      book.setRecommendationscore(book.getRecommendationscore()+0.5);}
+					 
+		            
+					//extra recommendation points according to its rating
+					float rating=book.getRating();
+					
+					 if(rating>=2 && rating<3) {book.setRecommendationscore(book.getRecommendationscore()+0.05);}
+					else if(rating>=3 && rating<4) { book.setRecommendationscore(book.getRecommendationscore()+0.4);}
+					else if(rating>=4 && rating<=5) { book.setRecommendationscore(book.getRecommendationscore()+0.5);}
+								
+					book.setRating(rating);
+					}
+					else                                                   //if the book already exists
+					{
+						book.setRecommendationscore(book.getRecommendationscore()+0.1);//for each time the book was lent it gets extra recommendation points
+					}
+				}
+		    }	
+		
+		
+		    }}
+		   //------------------------------------------------------------------------------------------------------------------// 
+		    
+		  //-----------------------Sorting recs by recommendation score after every book is processed-----------------//
+		    
+		   Collections.sort(recs);
+		   //add best recommendations to suggest list
+		   int i=0;
+		   while(i<=recs.size()-1&&i<=10)
+		   {   suggest.add(recs.get(i));
+			   i++;
+		   }
+		   //0 recommendation points for next time
+		   for(Book book:recs) {book.setRecommendationscore(0);}
+		   
+	   
+		   
+		    
+		    
+		    
+		return suggest;}
 }

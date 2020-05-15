@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Book {
+public class Book implements Comparable<Book>{
 	private int code;
 	private String title;
 	private Author author;
@@ -12,24 +12,33 @@ public class Book {
 	private ArrayList<String> comments;
 	private Boolean borrowed = false;
 	private Borrower personWithBook;
-	private Scanner scanner = new Scanner(System.in);
-	private ArrayList<Borrower> pastBorrowers;
+	 //private Scanner scanner = new Scanner(System.in);
+	//CreateSuggestions uses
+		private ArrayList<Borrower> pastBorrowers;
+		private double recommendationscore;
 	
+
 	
-	public Book(int code, String title, Author author, String category, int year, String language, float rating, String publisher)
-	{
-		this.code = code;
-		this.title = title;
-		this.author = author;
-		this.category  =category;
-		this.year = year;
-		this.language = language;
-		this.rating = rating;
-		this.publisher = publisher;
-		comments = new ArrayList<String>();
-		pastBorrowers = new ArrayList<Borrower>;
-	}
-	
+	public Book(int code, String title, Author author, String category, int year, String language, float rating,
+				String publisher, ArrayList<String> comments, Boolean borrowed, Borrower personWithBook
+				) {
+			super();
+			this.code = code;
+			this.title = title;
+			this.author = author;
+			this.category = category;
+			this.year = year;
+			this.language = language;
+			this.rating = rating;
+			this.publisher = publisher;
+			this.comments = comments;
+			this.borrowed = borrowed;
+			this.personWithBook = personWithBook;
+			
+			this.pastBorrowers = null;
+			this.recommendationscore = 0;
+		}
+
 	public String getCategory() {
 		return category;
 	}
@@ -151,7 +160,7 @@ public class Book {
 		System.out.println("Bathmologia gia to biblio: ");
 		rate = scanner.nextFloat();
 		
-		while(TRUE){
+		while(true){
 			if(rate>=0 || rate<=5){
 				total += rate;
 				numOfRates++;
@@ -164,5 +173,32 @@ public class Book {
 		rating = avgRating;
 		System.out.println("H sunolikh bathmologia gia to biblio einai " + rating);
 		 
+	}
+//----------------------------------------------------------------------------------------------------------------//
+	
+	
+	public double getRecommendationscore() {
+		return recommendationscore;
+	}
+
+	public ArrayList<Borrower> getPastBorrowers() {
+		return pastBorrowers;
+	}
+
+	public void setPastBorrowers(ArrayList<Borrower> pastBorrowers) {
+		this.pastBorrowers = pastBorrowers;
+	}
+
+	public void setRecommendationscore(double recommendationscore) {
+		this.recommendationscore = recommendationscore;
+	}
+
+	@Override
+	public int compareTo(Book o) {
+		// TODO Auto-generated method stub
+		if(this.getRecommendationscore()>o.getRecommendationscore()) {return 1;}
+		else if(this.getRecommendationscore()==o.getRecommendationscore()) {return 0;}
+		else
+		return -1;
 	}
 }

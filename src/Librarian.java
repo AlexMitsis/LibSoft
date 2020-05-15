@@ -21,3 +21,4 @@ public class Librarian extends Member
 		
 	}
 }
+//SThn terminate booklending prepei na enhmerwnei to 	private ArrayList<Borrower> pastBorrowers; tou kathe book
