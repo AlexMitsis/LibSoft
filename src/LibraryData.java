@@ -11,32 +11,51 @@ public class LibraryData {
 	private ArrayList<BookLending> BorrowedBooks = new ArrayList<BookLending>();
 	private ArrayList<Author> Authors = new ArrayList<Author>();
 	
+	
+	//constructor
+	public LibraryData(ArrayList<Borrower> listOfBorrowers, ArrayList<Borrower> penaltyList,
+			ArrayList<Book> listOfBooks, ArrayList<Book> delayedBooks, ArrayList<BookLending> borrowedBooks,
+			ArrayList<Author> authors) {
+		
+		ListOfBorrowers = listOfBorrowers;
+		PenaltyList = penaltyList;
+		ListOfBooks = listOfBooks;
+		DelayedBooks = delayedBooks;
+		BorrowedBooks = borrowedBooks;
+		Authors = authors;
+	}
 
 	public ArrayList<Book> getListOfBooks() 
 	{
 		return ListOfBooks;
 	}
 	
-    public void setListOfBooks(ArrayList<Book> listOfBooks) 
-    {
+    	public void setListOfBooks(ArrayList<Book> listOfBooks) 
+    	{
 		ListOfBooks = listOfBooks;
+    	}
+
+   public ArrayList<Borrower> getListOfBorrowers() {
+		return ListOfBorrowers;
 	}
 
-	public void BookDiscarding(Book b)
+	public void setListOfBorrowers(ArrayList<Borrower> listOfBorrowers) {
+		ListOfBorrowers = listOfBorrowers;
+	}	
+	
+	
+	public void BookDiscarding(int Code)
     { //ψαχνει το βιβλιο βασει σειριακου book.code
-    	/*public void BookDiscarding(String Title){
-    	 *
-    	   for(Book : book : ListOfBooks)
-    	 * {
-    	 * 		if(book.title=Title)
-    	 * 		{      
-    	 * 			     ListOfBooks.delete(book);
-    	 *      }
-    	 * }
-    	 */
+    	
+    	  for(Book  book : ListOfBooks)
+    	  {
+    	 	if(book.code=Code){
+    	  		ListOfBooks.delete(book); }
+    	  }
+    	 
     }
 	
-	private Member createMembership()//void?nai
+	private void createMembership()//void?nai
 	{
 		String username = JOptionPane.showInputDialog("Onoma kainourgioy xrhsth: ");
 		String password = JOptionPane.showInputDialog("Kwdikos kainourgiou xrhsth: ");
@@ -76,31 +95,37 @@ public class LibraryData {
 	 * 			}
 	 * 		}
 	 * 
-	 * }
+	 */ }
 	 
 		
 	
 	ψαχνει βασει ονοματος ,επιστρεφει το αντικειμενο ολοκληρο public book,γιατι εβαλες ιντ;
-	public int searchBook(String Title)
+	//ebala int gia na epistrefei ton kwdiko tou bibliou
+	public Book searchBook(String Title)
 	{
-		for(Book : aBook : ListOfBooks)
+		boolean found = false;
+		
+		for(Book  aBook : ListOfBooks)
 		{
-			if(aBook.title=Title)
-				return aBook.code;
-			//System.out.println("There is no book with this title.");
-		}	
+			if(aBook.title=Title){
+				return aBook;
+				found = true;
+			}	
+		}
+		if(found = false)
+			System.out.println("Den uparxei biblio me tetoio titlo.");
 	}
 	
 	public ArrayList<Book> searchByFilter(String WantedCategory)
 	{
 		private ArrayList<Book> wantedCategoryBooks = new ArrayList<Book>;
-		for(Book : aBook : ListOfBooks)
+		for(Book  aBook : ListOfBooks)
 		{
 			if(aBook.category=WantedCategory) {
 				wantedCategoryBooks.add(aBook);
 			}	
 		}
-		for(Book : Abook : wantedCategoryBooks)
+		for(Book  Abook : wantedCategoryBooks)
 		{
 			System.out.println(Abook.getTitle());
 			System.out.println(Abook.getCategory());
@@ -118,7 +143,7 @@ public class LibraryData {
 			System.out.println("Something happened.Please try again");
 		
 	}
-	 */
+	 
 	public ArrayList<Book> createSuggestions(Borrower m)
 	{
 		
@@ -126,29 +151,5 @@ public class LibraryData {
 		
 		
 	}
-	
-	
-	//constructor
-	public LibraryData(ArrayList<Borrower> listOfBorrowers, ArrayList<Borrower> penaltyList,
-			ArrayList<Book> listOfBooks, ArrayList<Book> delayedBooks, ArrayList<BookLending> borrowedBooks,
-			ArrayList<Author> authors) {
-		
-		ListOfBorrowers = listOfBorrowers;
-		PenaltyList = penaltyList;
-		ListOfBooks = listOfBooks;
-		DelayedBooks = delayedBooks;
-		BorrowedBooks = borrowedBooks;
-		Authors = authors;
-	}
-
-	public ArrayList<Borrower> getListOfBorrowers() {
-		return ListOfBorrowers;
-	}
-
-	public void setListOfBorrowers(ArrayList<Borrower> listOfBorrowers) {
-		ListOfBorrowers = listOfBorrowers;
-	}
-
-	
 	
 }
