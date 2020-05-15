@@ -119,11 +119,11 @@ public class Book {
 		 */
 	}
 	
-	public void borrowBook(Borrower person)
+	/*public void borrowBook(Borrower person)
 	{
 		personWithBook = person
 		pastBorrowers.add(person)
-	}
+	}*/
 	
 	public void toggleAvailability()
 	{
