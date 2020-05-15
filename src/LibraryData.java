@@ -112,7 +112,7 @@ public class LibraryData {
 				found = true;
 			}	
 		}
-		if(found = false)
+		if(found == false)
 			System.out.println("Den uparxei biblio me tetoio titlo.");
 	}
 	
