@@ -133,40 +133,36 @@ public class Book {
 			borrowed = false;
 	}
 	
-	public void commentBook(Member person)//to sxolio tha einai string se morfh "o xrhsths person.name eggrapse sxolio"
+	public void commentBook(Member person, String comment)//to sxolio tha einai string se morfh "o xrhsths person.name eggrapse sxolio"
 	//epishs tha pernei orisma kai to mhnyma giati ayth h methodos tha kaleitai mesw koumpiou
-	{//Xwris orisma to person?Nomizw den thelei orisma
-		/*
+	{
 		
-		System.out.println("Sxolia: ");
-		String commentary = scanner.nextLine();
-		
-		comments.add(commentary);
-		*/
+		comments.add(comment);
+		System.out.println("O xrhsths " + person.name + " egrapse sxolio: " + comment);
 		
 	}
 	
-	public void rateBook(Member person)//den xreiazetai ton person
+	public void rateBook()//den xreiazetai ton person
 	{
-		/*
-		 * public void rateBook(float rate)
-		 * {
-		 * 		float[]  avgRating; 
-		 * 		float total=0;
-		 *  
-		 * 		if(rate>=0 && rate<=5) {
-		 * 			rating = rate;
-		 *      	avgRating.add(rate);
-		 *      }
-		 * 		else
-		 * 			System.out.println("Parakalw balte mia swsti bathmologia");		
-		 * 		
-		 * 		for(int i=0; i<avgRating.length()< i++)
-		 *  		total += avgRating[i];
-		 * 		
-		 * 		float average = total/avgRating.length();
-		 * 		System.out.println("Mesos oros kritikis bibliou: " + average);
-		 * 
-		 */
+		float avgRating;
+		float total=0;
+		int numOfRates = 0;
+		   
+		System.out.println("Bathmologia gia to biblio: ");
+		rate = scanner.nextFloat();
+		
+		while(TRUE){
+			if(rate>=0 || rate<=5){
+				total += rate;
+				numOfRates++;
+				break;
+			}
+			else
+				System.out.println("Parakalw dwste mia egkurh bathmologia(0-5)"); 		
+		}
+		avgRating = total / numOfRates;
+		rating = avgRating;
+		System.out.println("H sunolikh bathmologia gia to biblio einai " + rating);
+		 
 	}
 }
