@@ -18,14 +18,14 @@ public class LibraryData {
     		return ListOfBooks;
     	}
     	
-		public ArrayList<Borrower> getWithPenalty() {
-			return WithPenalty;
-		}
+	public ArrayList<Borrower> getWithPenalty() {
+		return WithPenalty;
+	}
 
-		public void setWithPenalty(Borrower withPenalty) {
-			WithPenalty.add(withPenalty);/********/		}
+	public void setWithPenalty(Borrower withPenalty) {
+		WithPenalty.add(withPenalty);/********/		}
 
-		public void setListOfBooks(ArrayList<Book> listOfBooks) 
+	public void setListOfBooks(ArrayList<Book> listOfBooks) 
     	{
 		ListOfBooks = listOfBooks;
     	}
@@ -38,52 +38,47 @@ public class LibraryData {
 		ListOfBorrowers = listOfBorrowers;
 	}	
 	
-	      
-	
-    		
-    		 public void setDelayedBooks(ArrayList<BookLending> delayedBooks) {
+    	public void setDelayedBooks(ArrayList<BookLending> delayedBooks) {
 		DelayedBooks = delayedBooks;
 	}
 
-			public ArrayList<BookLending> getDelayedBooks() {
-				return DelayedBooks;
-			}
+	public ArrayList<BookLending> getDelayedBooks() {
+		return DelayedBooks;
+	}
 
-			public ArrayList<Borrower> getPenaltyList() {
-    			return PenaltyList;
-    		}
+	public ArrayList<Borrower> getPenaltyList() {
+    		return PenaltyList;
+    	}
 
-    		public void setPenaltyList(ArrayList<Borrower> penaltyList) {
-    			PenaltyList = penaltyList;
-    		}
+    	public void setPenaltyList(ArrayList<Borrower> penaltyList) {
+    		PenaltyList = penaltyList;
+    	}
 
    
-    		public ArrayList<BookLending> getBorrowedBooks() {
-    			return BorrowedBooks;
-    		}
+    	public ArrayList<BookLending> getBorrowedBooks() {
+    		return BorrowedBooks;
+    	}
 
-    		public void setBorrowedBooks(ArrayList<BookLending> borrowedBooks) {
-    			BorrowedBooks = borrowedBooks;
-    		}
+    	public void setBorrowedBooks(ArrayList<BookLending> borrowedBooks) {
+    		BorrowedBooks = borrowedBooks;
+    	}
 
-    		public ArrayList<Author> getAuthors() {
-    			return Authors;
-    		}
+    	public ArrayList<Author> getAuthors() {
+    		return Authors;
+    	}
 
-    		public void setAuthors(ArrayList<Author> authors) {
-    			Authors = authors;
-    		}
+    	public void setAuthors(ArrayList<Author> authors) {
+    		Authors = authors;
+    	}
+    	
     		
-    		
-    		
-    		
-    		public void BookDiscarding(int Code)
+    	public void BookDiscarding(int Code)
     	    { //ψαχνει το βιβλιο βασει σειριακου book.code
     	    	
     	    	  for(Book  book : ListOfBooks)
     	    	  {
-    	    	 	if(book.code=Code){
-    	    	  		ListOfBooks.delete(book); 
+    	    	 	if(book.getCode()==Code){
+    	    	  		ListOfBooks.remove(book); 
     	    	  		
     	    	  }
     	    	 
@@ -111,21 +106,21 @@ public class LibraryData {
 	public void terminateMembership(Borrower b) {
 	/*public void terminateMembership(String Username)
 	 * {
-	 * 		for(Borrower : aBorrower : ListOfBorrowers)
+	 * 		for(Borrower  aBorrower : ListOfBorrowers)
 	 *  	{
-	 *  		if(aBorrower.username=Username)
+	 *  		if(aBorrower.getUsername().equalsIgnoreCase(Username))
 	 *  		{
-	 *  			ListOfBorrowers.delete(aBorrowerr);
+	 *  			ListOfBorrowers.remove(aBorrowerr);
 	 *  			System.out.println("H diagrafh epiteuxthi!"); 
 	 * 			}
 	 * 		}
 	 * 
-	 * 		for(Borrower : borrower : PenaltyList)
+	 * 		for(Borrower  borrower : PenaltyList)
 	 * 		{
-	 * 			if(borrower.username=Username)
+	 * 			if(borrower.getUsername().equalsIgnoreCase(Username))
 	 * 			{
-	 * 				PenaltyList.delete(borrower);
-	 * 				System.out.prinyln("H diagrafh epiteuxthi!)"
+	 * 				PenaltyList.remove(borrower);
+	 * 				System.out.println("H diagrafh epiteuxthi!)"
 	 * 			}
 	 * 		}
 	 * 
@@ -141,7 +136,7 @@ public class LibraryData {
 		
 		for(Book  aBook : ListOfBooks)
 		{
-			if(aBook.title=Title){ 
+			if(aBook.getTitle()==Title){ 
 				return aBook;
 				found = true;
 			}	
@@ -155,7 +150,7 @@ public class LibraryData {
 		 ArrayList<Book> wantedCategoryBooks = new ArrayList<Book>();
 		for(Book  aBook : ListOfBooks)
 		{
-			if(aBook.category=WantedCategory) { ///DEN sygkrinei me = kai xreiazontai gettersss
+			if(aBook.getCategory().equalsIgnoreCase(WantedCategory)) { ///DEN sygkrinei me = kai xreiazontai gettersss//To piasaaa
 				wantedCategoryBooks.add(aBook);
 			}	
 		}
