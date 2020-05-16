@@ -29,12 +29,7 @@ public class Author {
   
   public void updateListOfBooks(Book newBook)
   {
-       addBook(newBook);
-           
-       for(Follower follower : ListOfFollowers)
-       {
-            
-       }
+    
   }
 
 }
