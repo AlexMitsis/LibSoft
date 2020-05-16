@@ -1,14 +1,26 @@
-import java.util.ArrayList;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.TimerTask;
 
-public class SystemNotification {
+
+public class SystemNotification extends TimerTask  {
 	
 	public static void checkforActions() {
 		Warning.checkforWarning();
 		Penalty.checkforPenalty();
 		Penalty.undoPenalties();
 	}
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		SystemNotification.checkforActions();
+	}
 
+
+	
+	//------------------------------------------------------//
+	
 	private static class Warning{
 		public static void checkforWarning() 
 		{
@@ -34,16 +46,18 @@ public class SystemNotification {
 			ArrayList<BookLending> delayed=Main.librarydata.getDelayedBooks();
 			for(BookLending booklending:borrowed) {
 				if(booklending.getTimeLeft(LocalDate.now())==-1) {
-					delayed.add(booklending);/*******/
-					borrowed.remove(booklending);/******/
-					//implementing the right penalty
+					delayed.add(booklending);
+					borrowed.remove(booklending);
 					Borrower recipient=booklending.getBorrower();
 					recipient.setNumberOfPenalties((recipient.getNumberOfPenalties()+1)%3);
 					boolean severe=false;
 					if(recipient.getNumberOfPenalties()==0) {
 						recipient.setAbleToBorrow(false);
 						recipient.setDateOfLastPenlty(LocalDate.now());
-                       /**add to withpenalty list**/			
+                       /**add to withpenalty list**/	
+						ArrayList<Borrower> p=Main.librarydata.getWithPenalty();
+						if(p.indexOf(recipient)==-1)//if doesn't exist
+						{p.add(recipient);}
 						severe=true;
 					}	
 										
@@ -59,8 +73,16 @@ public class SystemNotification {
 			}
 		}
 		public static void undoPenalties() {
-			
-			
+			ArrayList<Borrower> penalties=Main.librarydata.getWithPenalty();
+			for(Borrower b:penalties) {
+				if(b.getDateOfLastPenlty().plusDays(14)==LocalDate.now()) { 
+				b.setAbleToBorrow(true);
+				penalties.remove(b);
+				String text="Mporeite na daneisteite 3ana";
+				Message inform=new Message(text,Main.librarian);
+				Message.messageToSome(b, inform);
+				}
+			}
 		}
 		
 		
@@ -68,6 +90,7 @@ public class SystemNotification {
 		
 		
 	}
+	
 	
 
 }

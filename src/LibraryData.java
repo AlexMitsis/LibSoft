@@ -137,7 +137,7 @@ public class LibraryData {
 		for(Book  aBook : ListOfBooks)
 		{
 			if(aBook.getTitle()==Title){ 
-				return aBook;
+				return aBook; //ta string me isequal
 				found = true;
 			}	
 		}
