@@ -3,10 +3,7 @@ import java.util.ArrayList;
 public class Librarian extends Member
 {
 
-	public Librarian() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 	public void addBok(Book aBook)
 	{
 		 

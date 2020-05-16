@@ -1,4 +1,6 @@
-import java.util.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Book implements Comparable<Book>{
 	private int code;
@@ -128,32 +130,42 @@ public class Book implements Comparable<Book>{
 		 */
 	}
 	
-	public void setBorrower(Borrower person)
+	/*public void setBorrower(Borrower person)
 	{
 		personWithBook = person
 		pastBorrowers.add(person)
-	}
+	}///den xreiazetai ,an nai giati*/
 	
-	public void requestBook(Member person)
-	{
+	public void requestBook(Borrower person)//ayth ypotithetai kaleitai mono apo ton bibliothhkario,tha phgainei sthn selida tou bibliou
+	{   
+		this.toggleAvailability();
+		if(person.isAbleToBorrow()&&person.getNumberOfBorrowedBooks()<3) {
+			//creating a booklending instance
+			BookLending bkl=new BookLending(person,this,0,LocalDate.now());
+			//updating borrower's info
+			person.setNumberOfBorrowedBooks(person.getNumberOfBorrowedBooks()+1);
+			//updates list of borrowed books
+		Main.librarydata.getBorrowedBooks().add(bkl);//booklending
+		Main.librarydata.getListOfBorrowers().add(person);
 		
+		}
 		
 	}	
 	
 	public void toggleAvailability()
 	{
-		if(borrowed = false)
+		if(!borrowed)
 			borrowed = true;
 		else 
 			borrowed = false;
 	}
 	
-	public void commentBook(Member person, String comment)//to sxolio tha einai string se morfh "o xrhsths person.name eggrapse sxolio"
+	public void commentBook(Borrower person, String comment)//to sxolio tha einai string se morfh "o xrhsths person.name eggrapse sxolio"
 	//epishs tha pernei orisma kai to mhnyma giati ayth h methodos tha kaleitai mesw koumpiou
 	{
 		
 		comments.add(comment);
-		System.out.println("O xrhsths " + person.name + " egrapse sxolio: " + comment);
+		System.out.println("O xrhsths " + person.getUsername() + " egrapse sxolio: " + comment);
 		
 	}
 	
@@ -166,8 +178,10 @@ public class Book implements Comparable<Book>{
 		   
 		while(true){
 			System.out.println("Bathmologia gia to biblio: ");
-			rate = scanner.nextFloat();
-			if(rate>=0 || rate<=5){
+			@SuppressWarnings("resource")
+			Scanner keyboard = new Scanner(System.in);
+			rate=keyboard.nextInt();
+			if(rate>=0 && rate<=5){
 				total += rate;
 				numOfRates++;
 				break;

@@ -1,7 +1,12 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Borrower extends Member{
+public class Borrower extends Member implements Comparable<Borrower>{
+
+	public Borrower(String username, String password) {
+		super(username, password);
+		// TODO Auto-generated constructor stub
+	}
 	private ArrayList<Book> currentBorrowedBooks;
 	private ArrayList<Book> favouriteList;
 	private ArrayList<Book> toReadList;
@@ -9,12 +14,19 @@ public class Borrower extends Member{
 	private boolean ableToBorrow;
 	private int numberOfPenalties;
 	private LocalDate dateOfLastPenlty;
+	private int numberOfBorrowedBooks;
 	
 	
 	
 	
 	
 	
+	public int getNumberOfBorrowedBooks() {
+		return numberOfBorrowedBooks;
+	}
+	public void setNumberOfBorrowedBooks(int numberOfBorrowedBooks) {
+		this.numberOfBorrowedBooks = numberOfBorrowedBooks;
+	}
 	public LocalDate getDateOfLastPenlty() {
 		return dateOfLastPenlty;
 	}
@@ -56,6 +68,12 @@ public class Borrower extends Member{
 	}
 	public void setHistory(ArrayList<Book> history) {
 		this.history = history;
+	}
+	@Override
+	public int compareTo(Borrower o) {
+		// TODO Auto-generated method stub
+		if(this.getUsername().equalsIgnoreCase(o.getUsername())&&this.getPassword().equalsIgnoreCase(o.getPassword()))
+		{return 0;}else return -1;
 	}
 	
 	

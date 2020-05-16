@@ -81,7 +81,7 @@ public class LibraryData {
     	    	  		ListOfBooks.remove(book); 
     	    	  		
     	    	  }
-    	    	 
+    	    	 //na afairei ki apo tis listes tou author tou 
     	    }}
     		
 	private void createMembership()//void?nai
@@ -128,21 +128,21 @@ public class LibraryData {
 	 
 		
 	
-	//ψαχνει βασει ονοματος ,επιστρεφει το αντικειμενο ολοκληρο public book,γιατι εβαλες ιντ;
-	//ebala int gia na epistrefei ton kwdiko tou bibliou
 	public Book searchBook(String Title)
-	{
+	{   Book b=null;
 		boolean found = false;
 		
 		for(Book  aBook : ListOfBooks)
 		{
-			if(aBook.getTitle()==Title){ 
-				return aBook; //ta string me isequal
+			if(aBook.getTitle().equalsIgnoreCase(Title)){ 
 				found = true;
+				return aBook; 
+				
 			}	
 		}
 		if(found == false)
-			System.out.println("Den uparxei biblio me tetoio titlo.");
+			System.out.println("Den uparxei biblio me tetoio titlo.");//grafikhs diepafhs
+		return b;
 	}
 	
 	public ArrayList<Book> searchByFilter(String WantedCategory)
@@ -150,42 +150,64 @@ public class LibraryData {
 		 ArrayList<Book> wantedCategoryBooks = new ArrayList<Book>();
 		for(Book  aBook : ListOfBooks)
 		{
-			if(aBook.getCategory().equalsIgnoreCase(WantedCategory)) { ///DEN sygkrinei me = kai xreiazontai gettersss//To piasaaa
+			if(aBook.getCategory().equalsIgnoreCase(WantedCategory)) { 
 				wantedCategoryBooks.add(aBook);
 			}	
 		}
-		for(Book  Abook : wantedCategoryBooks)
+		for(Book  Abook : wantedCategoryBooks)/*emfanizontai sto gui tou xrhsth,isws na mhn xreiastei na epistrafei lista biliwn??*/
 		{
 			System.out.println(Abook.getTitle());
 			System.out.println(Abook.getCategory());
 			
 		}
-		
+		return wantedCategoryBooks;
       }
-	public Member Login(String username, String password)
-	{
-		Member member = new Member(username, password);
-		if(isuser(member)) 
-			return member;
-		
-		else
-			System.out.println("Something happened.Please try again");
-		
-	}
+	
+	public void Login()//kaleitai otan oxrhsths pathsei to login
+	{ 
+		Scanner keyboard = new Scanner(System.in);
+        boolean login=false;
+        boolean islibrarian=false;
+        while(!login) {
+        	//protreptikomhynma pao grafikh diepaffh
+        	System.out.println("Doste onoma kai kwdiko");
+		   String username=keyboard.nextLine();
+	       String password=keyboard.nextLine();
+	       Borrower potential=new Borrower(username,password);
+	       if(username.equalsIgnoreCase("Librarian")&&password.equalsIgnoreCase("LibrarianPassword")) 
+	       {islibrarian=true;
+	    	   login=true;}
+	       else if(!username.equalsIgnoreCase("Librarian")) 
+	       {
+	    	   ArrayList<Borrower> users=Main.librarydata.getListOfBorrowers();
+	    	   boolean found=false;
+	    	   int i=0;
+	    	   while(!found && i<=users.size()-1)
+	    	   {
+	    		   if(users.get(i)==potential) {
+	    			   found=true;
+	    			   login=true;
+	    			   }
+	    	   }
+	       }
+	       else System.out.println("Kati den phge kala");
+		}
+        if(islibrarian) {/*dei3e th diepafh bibliothhkariou*/}
+        else {/*dei3e thn diepafh xrhsth*/}
+        }
+        
 	
 	
-	
-
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------------//
 	public ArrayList<Book> createSuggestions(Borrower m)
 	{
 		ArrayList<Book> suggest=null;
-		ArrayList<Book> readbooks=null;
+		ArrayList<Book> readbooks=null;//books in her history record
 		ArrayList<Book> history=m.getHistory();
 		int size=history.size();//size of borrowers history
 		
-		//--------initialize books---------------------//checks if books are the same
+		//--------initialize books---------------------//checks if books are the same 
 		if(size==0) {suggest=null;}
 		else if(size<=2) {int i=0;
 		   readbooks.add(history.get(i));

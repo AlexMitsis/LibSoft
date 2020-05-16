@@ -3,7 +3,7 @@ import java.util.TimerTask;
 
 public class Main 
 {  
-	static Librarian librarian=null;   //ousiastika autos einai o bibliothhkarios gia opou xriazetai omoia kai h librarydata
+	static Librarian librarian=null;  //ousiastika autos einai o bibliothhkarios gia opou xriazetai omoia kai h librarydata
 	static LibraryData librarydata=null;
 	
 

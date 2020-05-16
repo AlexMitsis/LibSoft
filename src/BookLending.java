@@ -12,7 +12,23 @@ public class BookLending
   
   
   
-  public  long getTimeLeft(LocalDate now)
+  public BookLending(Borrower borrower, Book book, int renewalCounter, LocalDate dateborrowed) {
+	super();
+	this.borrower = borrower;
+	this.book = book;
+	this.renewalCounter = renewalCounter;
+	this.dateborrowed = dateborrowed;
+}
+
+public int getRenewalCounter() {
+	return renewalCounter;
+}
+
+public void setRenewalCounter(int renewalCounter) {
+	this.renewalCounter = renewalCounter;
+}
+
+public  long getTimeLeft(LocalDate now)
   { long diff;
     diff= this.dateborrowed.until(now,ChronoUnit.DAYS);
     return diff;
