@@ -128,11 +128,17 @@ public class Book implements Comparable<Book>{
 		 */
 	}
 	
-	/*public void borrowBook(Borrower person)
+	public void setBorrower(Borrower person)
 	{
 		personWithBook = person
 		pastBorrowers.add(person)
-	}*/
+	}
+	
+	public void requestBook(Member person)
+	{
+		
+		
+	}	
 	
 	public void toggleAvailability()
 	{
@@ -152,15 +158,15 @@ public class Book implements Comparable<Book>{
 	}
 	
 	public void rateBook()//den xreiazetai ton person
-	{
+	{	
+		float rate;
 		float avgRating;
 		float total=0;
 		int numOfRates = 0;
 		   
-		System.out.println("Bathmologia gia to biblio: ");
-		rate = scanner.nextFloat();
-		
 		while(true){
+			System.out.println("Bathmologia gia to biblio: ");
+			rate = scanner.nextFloat();
 			if(rate>=0 || rate<=5){
 				total += rate;
 				numOfRates++;
@@ -172,7 +178,7 @@ public class Book implements Comparable<Book>{
 		avgRating = total / numOfRates;
 		rating = avgRating;
 		System.out.println("H sunolikh bathmologia gia to biblio einai " + rating);
-		 
+		//Theloume na baloume epilogh na ksanabathmologei to biblio???
 	}
 //----------------------------------------------------------------------------------------------------------------//
 	
