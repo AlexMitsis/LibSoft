@@ -5,19 +5,36 @@ public class Author {
   private ArrayList<Book> ListOfBooks;
   private ArrayList<Borrower> ListOfFollowers;
   
+  public Author(String name)
+  {
+      this.name = name;
+      ListOfBooks = new ArrayList<Book>();
+      ListOfFollowers = new ArrayList<Borrower>();
+  }  
+  
+  public void addBook(Book b)
+  {
+    ListOfBooks.add(b);    
+  }
+  
   public void deleteFollower(Borrower b)
   {
-    
+      ListOfFollowers.remove(b) 
   }
   
   public void addFollower(Borrower b)
   {
-    
+      ListOfFollowers.add(b);
   }
   
-  public void updateListOfBooks()
+  public void updateListOfBooks(Book newBook)
   {
-    
+       addBook(newBook);
+           
+       for(Follower follower : ListOfFollowers)
+       {
+            
+       }
   }
 
 }
