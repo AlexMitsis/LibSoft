@@ -82,6 +82,7 @@ public class LibraryData {
     	    	  		
     	    	  }
     	    	 //na afairei ki apo tis listes tou author tou 
+		// ara na baloume kai mia lista ArrayList<Book> authorBooks?
     	    }}
     		
 	private void createMembership()//void?nai
@@ -103,28 +104,28 @@ public class LibraryData {
 		
 	}
 	
-	public void terminateMembership(Borrower b) {
-	/*public void terminateMembership(String Username)
-	 * {
-	 * 		for(Borrower  aBorrower : ListOfBorrowers)
-	 *  	{
-	 *  		if(aBorrower.getUsername().equalsIgnoreCase(Username))
-	 *  		{
-	 *  			ListOfBorrowers.remove(aBorrowerr);
-	 *  			System.out.println("H diagrafh epiteuxthi!"); 
-	 * 			}
-	 * 		}
-	 * 
-	 * 		for(Borrower  borrower : PenaltyList)
-	 * 		{
-	 * 			if(borrower.getUsername().equalsIgnoreCase(Username))
-	 * 			{
-	 * 				PenaltyList.remove(borrower);
-	 * 				System.out.println("H diagrafh epiteuxthi!)"
-	 * 			}
-	 * 		}
-	 * 
-	 */ }
+
+	public void terminateMembership(String Username)
+	 {
+	  	for(Borrower  aBorrower : ListOfBorrowers)
+	   	   {
+	   		if(aBorrower.getUsername().equalsIgnoreCase(Username))
+	   		    {
+	   			ListOfBorrowers.remove(aBorrowerr);
+	  			System.out.println("H diagrafh epiteuxthi!"); 
+	  			}
+	  		}
+	  
+			for(Borrower  borrower : PenaltyList)
+	 		{
+	 			if(borrower.getUsername().equalsIgnoreCase(Username))
+	  			{
+	  				PenaltyList.remove(borrower);
+	 				System.out.println("H diagrafh epiteuxthi!)"
+	  			}
+	  		}
+	  
+	}
 	 
 		
 	
