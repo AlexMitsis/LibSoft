@@ -23,7 +23,7 @@ public class Message {
 		Main.librarian.setPersonalMessage(messagefromborrower);
 
 	}
-	
+	//Static methods are called to send messages
 	//used by librarian for messages to all members.For each member personalized suggestions will be generated
 	public static void MessageToAllMembers(Message message) {
 		for(Borrower recipient:Main.librarydata.getListOfBorrowers()) 
@@ -31,13 +31,13 @@ public class Message {
 		String books="Here are some books based on your history:";
 		for(Book book:list) {books=books+book.getTitle()+"\n";}//!
 		String finalmessage="Library message:"+message.getMessage()+" Your personalized suggestions: "+books;
-		Message.messageToSome(recipient,new Message(finalmessage,Main.librarian));
+		Message.messageToBorrower(recipient,new Message(finalmessage,Main.librarian));
 		}
 		}
 			
 	
 	//used by librarian for personalized messanges
-	public static void messageToSome(Borrower recipient,Message messagefromlibrary)
+	public static void messageToBorrower(Borrower recipient,Message messagefromlibrary)
 	{
 		recipient.setPersonalMessage(messagefromlibrary);
 	}

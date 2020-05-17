@@ -31,7 +31,7 @@ public class Author {
   public void updateListOfBooks(Book newBook)
     //ton paralhpth pws ton bazw?
   {
-      String mhnuma = "Neo biblio enos suggrafea pou akoloutheite prosthethike!" ;///ououououou teleiaaa
+      String mhnuma = "Neo biblio enos suggrafea "+this.name+" pou akoloutheite prosthethike!" ;///ououououou teleiaaa
    //   Member apostoleas = new Librarian(username, password);
       
       //xrhsimopoieitai monadikos bibliothhkarios pou dhlwthhke sthn main
@@ -43,7 +43,7 @@ public class Author {
       
       for(Borrower follower : ListOfFollowers)
       {
-          Message.messageToSome(follower, message); 
+          Message.messageToBorrower(follower, message); 
       }
     
   }

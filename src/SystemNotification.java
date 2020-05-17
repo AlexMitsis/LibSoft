@@ -31,7 +31,7 @@ public class SystemNotification extends TimerTask  {
 				String text="To vivlio"+booklending.getBook().getTitle()+"prepei na epistrafei se 3 meres";
 				Borrower recipient=booklending.getBorrower();
 				Message warning=new Message(text,Main.librarian);
-				Message.messageToSome(recipient, warning);
+				Message.messageToBorrower(recipient, warning);
 			}
 				
 			}
@@ -67,7 +67,7 @@ public class SystemNotification extends TimerTask  {
 							+ "den mporeite na daneisteite gia 30 meres";
 					Message warning=null;
 					if(!severe) {warning=new Message(text1,Main.librarian);}else {warning=new Message(text2,Main.librarian);}
-					Message.messageToSome(recipient, warning);
+					Message.messageToBorrower(recipient, warning);
 					
 				}
 			}
@@ -80,7 +80,7 @@ public class SystemNotification extends TimerTask  {
 				penalties.remove(b);
 				String text="Mporeite na daneisteite 3ana";
 				Message inform=new Message(text,Main.librarian);
-				Message.messageToSome(b, inform);
+				Message.messageToBorrower(b, inform);
 				}
 			}
 		}
