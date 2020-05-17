@@ -18,7 +18,8 @@ public  long getTimeLeft(LocalDate now)//before the book shall be returned
 //--------------Lending Actions-------------------------------//
 
 public void initiateBookLending(String username,int bookcode)//ayth ypotithetai kaleitai mono apo ton bibliothhkario,tha phgainei sthn selida tou bibliou
-{   Book book=Book.findBook(bookcode);
+{   Book book=Book.findBook(bookcode);                       //ypotithetai oti ginetai me fysikh paousia
+
     Borrower borrower=Borrower.FindBorrower(username);
     
 	book.toggleAvailability();
@@ -75,7 +76,7 @@ public void initiateBookLending(String username,int bookcode)//ayth ypotithetai 
   
   
   
- //---------getters and setters--------------------// 
+ //---------getters ,setters and constructors--------------------// 
   
   
   

@@ -13,12 +13,106 @@ public class Book implements Comparable<Book>{
 	private String publisher;
 	private ArrayList<String> comments;
 	private Boolean borrowed = false;
-//	private Borrower personWithBook;
-	 //private Scanner scanner = new Scanner(System.in);
-	//CreateSuggestions uses
-		private ArrayList<Borrower> pastBorrowers;
-		private double recommendationscore;
+	private ArrayList<Borrower> pastBorrowers;
+	private double recommendationscore;
 	
+	public void viewBook()
+	{
+		System.out.println(getTitle());
+		System.out.println(getAuthor());
+		System.out.println(getPublisher());
+		System.out.println(getYear());
+		System.out.println(getCategory());
+		System.out.println(getRating());
+		System.out.println(getLanguage());
+		/*
+		 * edw prepei na emfanistei kai to koumpi
+		 * gia ton daneismo tou bibliou
+		 */
+	}
+	
+	public static Book findBook(int code){
+		
+		for(Book book:Main.librarydata.getListOfBooks()) {
+			if(code==book.getCode()){return book;}
+		}	return null;
+	}
+	
+	
+	
+	public void toggleAvailability()
+	{
+		if(!borrowed)
+			borrowed = true;
+		else 
+			borrowed = false;
+	}
+	
+	public void commentBook(Borrower person, String comment)//to sxolio tha einai string se morfh "o xrhsths person.name eggrapse sxolio"
+	//epishs tha pernei orisma kai to mhnyma giati ayth h methodos tha kaleitai mesw koumpiou
+	{
+		
+		comments.add(comment);
+		System.out.println("O xrhsths " + person.getUsername() + " egrapse sxolio: " + comment);
+		
+	}
+	
+	public void rateBook()//den xreiazetai ton person
+	{	
+		float rate;
+		float avgRating;
+		float total=0;
+		int numOfRates = 0;
+		   
+		while(true){
+			System.out.println("Bathmologia gia to biblio: ");
+			@SuppressWarnings("resource")
+			Scanner keyboard = new Scanner(System.in);
+			rate=keyboard.nextInt();
+			if(rate>=0 && rate<=5){
+				total += rate;
+				numOfRates++;
+				break;
+			}
+			else
+				System.out.println("Parakalw dwste mia egkurh bathmologia(0-5)"); 		
+		}
+		avgRating = total / numOfRates;
+		rating = avgRating;
+		System.out.println("H sunolikh bathmologia gia to biblio einai " + rating);
+		//Theloume na baloume epilogh na ksanabathmologei to biblio???
+	}
+	
+	@Override
+	public int compareTo(Book o) {
+		// TODO Auto-generated method stub
+		if(this.getRecommendationscore()>o.getRecommendationscore()) {return 1;}
+		else if(this.getRecommendationscore()==o.getRecommendationscore()) {return 0;}
+		else
+		return -1;
+	}
+	
+	
+//----------------------------------------getters setters and constructors---------------------------------------------------------//
+	
+	
+	public double getRecommendationscore() {
+		return recommendationscore;
+	}
+
+	public ArrayList<Borrower> getPastBorrowers() {
+		return pastBorrowers;
+	}
+
+	public void setPastBorrowers(ArrayList<Borrower> pastBorrowers) {
+		this.pastBorrowers = pastBorrowers;
+	}
+
+	public void setRecommendationscore(double recommendationscore) {
+		this.recommendationscore = recommendationscore;
+	}
+
+
 
 	
 	public Book(int code, String title, Author author, String category, int year, String language, float rating,
@@ -114,103 +208,4 @@ public class Book implements Comparable<Book>{
 		this.author = author;
 	}
 	
-	public void viewBook()
-	{
-		System.out.println(getTitle());
-		System.out.println(getAuthor());
-		System.out.println(getPublisher());
-		System.out.println(getYear());
-		System.out.println(getCategory());
-		System.out.println(getRating());
-		System.out.println(getLanguage());
-		/*
-		 * edw prepei na emfanistei kai to koumpi
-		 * gia ton daneismo tou bibliou
-		 * diaforetiki klasi?
-		 */
-	}
-	
-	/*public void setBorrower(Borrower person)
-	{
-		personWithBook = person
-		pastBorrowers.add(person)
-	}///den xreiazetai ,an nai giati*/
-	public static Book findBook(int code){
-		
-		for(Book book:Main.librarydata.getListOfBooks()) {
-			if(code==book.getCode()){return book;}
-		}	return null;
-	}
-	
-	
-	
-	public void toggleAvailability()
-	{
-		if(!borrowed)
-			borrowed = true;
-		else 
-			borrowed = false;
-	}
-	
-	public void commentBook(Borrower person, String comment)//to sxolio tha einai string se morfh "o xrhsths person.name eggrapse sxolio"
-	//epishs tha pernei orisma kai to mhnyma giati ayth h methodos tha kaleitai mesw koumpiou
-	{
-		
-		comments.add(comment);
-		System.out.println("O xrhsths " + person.getUsername() + " egrapse sxolio: " + comment);
-		
-	}
-	
-	public void rateBook()//den xreiazetai ton person
-	{	
-		float rate;
-		float avgRating;
-		float total=0;
-		int numOfRates = 0;
-		   
-		while(true){
-			System.out.println("Bathmologia gia to biblio: ");
-			@SuppressWarnings("resource")
-			Scanner keyboard = new Scanner(System.in);
-			rate=keyboard.nextInt();
-			if(rate>=0 && rate<=5){
-				total += rate;
-				numOfRates++;
-				break;
-			}
-			else
-				System.out.println("Parakalw dwste mia egkurh bathmologia(0-5)"); 		
-		}
-		avgRating = total / numOfRates;
-		rating = avgRating;
-		System.out.println("H sunolikh bathmologia gia to biblio einai " + rating);
-		//Theloume na baloume epilogh na ksanabathmologei to biblio???
-	}
-//----------------------------------------------------------------------------------------------------------------//
-	
-	
-	public double getRecommendationscore() {
-		return recommendationscore;
-	}
-
-	public ArrayList<Borrower> getPastBorrowers() {
-		return pastBorrowers;
-	}
-
-	public void setPastBorrowers(ArrayList<Borrower> pastBorrowers) {
-		this.pastBorrowers = pastBorrowers;
-	}
-
-	public void setRecommendationscore(double recommendationscore) {
-		this.recommendationscore = recommendationscore;
-	}
-
-	@Override
-	public int compareTo(Book o) {
-		// TODO Auto-generated method stub
-		if(this.getRecommendationscore()>o.getRecommendationscore()) {return 1;}
-		else if(this.getRecommendationscore()==o.getRecommendationscore()) {return 0;}
-		else
-		return -1;
-	}
 }

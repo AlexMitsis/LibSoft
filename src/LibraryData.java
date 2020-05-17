@@ -14,16 +14,8 @@ public class LibraryData {
 	private ArrayList<BookLending> BorrowedBooks;
 	private ArrayList<Author> Authors;
 	
-    	
-    		
-    	public void BookDiscarding(int code)//tha zhtaei to kwdiko tou bibliou
-    	    { 
-    	    	Book xbook=Book.findBook(code);
-    	    	 	ListOfBooks.remove(xbook);
-    	    	 	Author author=xbook.getAuthor();//afairei apo th lista ergwn tou syggrafea
-    	    	   author.removeBook(xbook);
-    	    }
-    		
+ 
+  //========Methodoi pou aforoun melh  		
 	public void createMembership()//kaleitai apo bibliothhkario
 	{  
 		String username = JOptionPane.showInputDialog("Onoma kainourgioy xrhsth: ");
@@ -52,8 +44,45 @@ public class LibraryData {
 		    else {System.out.println("O xrhsths de brethhke");}
 	  
 	}
-	 
 	
+	public void Login()//kaleitai otan oxrhsths pathsei to login
+	{ 
+		Scanner keyboard = new Scanner(System.in);
+        boolean login=false;
+        boolean islibrarian=false;
+    	//protreptiko mhynma apo grafikh diepaffh
+    	System.out.println("Doste onoma kai kwdiko");
+	   String username=keyboard.nextLine();
+       String password=keyboard.nextLine();
+       
+       Borrower potential=new Borrower(username,password);
+       
+        while(!login) {
+	       if(username.equalsIgnoreCase("Librarian")&&password.equalsIgnoreCase("LibrarianPassword")) 
+	       {islibrarian=true;
+	    	   login=true;}
+	       else if(!username.equalsIgnoreCase("Librarian")) 
+	       {
+	    	  for(Borrower user:Main.librarydata.getListOfBorrowers()) {
+	    		  if(user==potential) {login=true;break;}
+	    	  }	    	   	    	
+	       }
+	       else System.out.println("Kati den phge kala");
+		}
+        if(islibrarian) {/*dei3e th diepafh bibliothhkariou*/}
+        else {/*dei3e thn diepafh xrhsth*/}
+        
+        }
+   	
+   // ======Methodoi gia biblia======		
+    	public void BookDiscarding(int code)//tha zhtaei to kwdiko tou bibliou
+    	    { 
+    	    	Book xbook=Book.findBook(code);
+    	    	 	ListOfBooks.remove(xbook);
+    	    	 	Author author=xbook.getAuthor();//afairei apo th lista ergwn tou syggrafea
+    	    	   author.removeBook(xbook);
+    	    }
+    	
 	public ArrayList<Book> searchBook(String Title)
 	{   ArrayList<Book> blist=new ArrayList<Book>();
 		boolean found = false;
@@ -82,75 +111,26 @@ public class LibraryData {
 		//prepei na emfanizetai h lista me ta biblia.anoigei diepafh apo edw kai tha einia void
 		return wantedCategoryBooks;
       }
-	
-	public void Login()//kaleitai otan oxrhsths pathsei to login
-	{ 
-		Scanner keyboard = new Scanner(System.in);
-        boolean login=false;
-        boolean islibrarian=false;
-    	//protreptiko mhynma apo grafikh diepaffh
-    	System.out.println("Doste onoma kai kwdiko");
-	   String username=keyboard.nextLine();
-       String password=keyboard.nextLine();
-       
-       Borrower potential=new Borrower(username,password);
-       
-        while(!login) {
-	       if(username.equalsIgnoreCase("Librarian")&&password.equalsIgnoreCase("LibrarianPassword")) 
-	       {islibrarian=true;
-	    	   login=true;}
-	       else if(!username.equalsIgnoreCase("Librarian")) 
-	       {
-	    	  for(Borrower user:Main.librarydata.getListOfBorrowers()) {
-	    		  if(user==potential) {login=true;break;}
-	    	  }	    	   	    	
-	       }
-	       else System.out.println("Kati den phge kala");
-		}
-        if(islibrarian) {/*dei3e th diepafh bibliothhkariou*/}
-        else {/*dei3e thn diepafh xrhsth*/}
-        }
-        
-	//==============================================================//
-	
+   
 
-	public ArrayList<Book> createSuggestions(Borrower m)
+	public ArrayList<Book> createSuggestions(Borrower borrower)
 	{
 		ArrayList<Book> suggest=null;
-		ArrayList<Book> readbooks=null;//books in her history record
-		ArrayList<Book> history=m.getHistory();
-		int size=history.size();//size of borrowers history
+		ArrayList<Book> last3books=new ArrayList<Book>();//books in her history record
+		ArrayList<Book> history=borrower.getHistory();
 		
-		//--------initialize books---------------------//checks if books are the same 
-		if(size==0) {suggest=null;}
-		else if(size<=2) {int i=0;
-		   readbooks.add(history.get(i));
-		   i++;
-		   if(history.get(i).getCode()!=history.get(i-1).getCode())
-		   {readbooks.add(history.get(i));
-		   i++;}}
-		else { int i=0;
-			   readbooks.add(history.get(i));
-			   i++;
-			   if(history.get(i).getCode()!=history.get(i-1).getCode())
-			   {readbooks.add(history.get(i));
-			   i++;}
-			   if(i==2) {
-				  if(history.get(i).getCode()!=history.get(i-1).getCode()&&history.get(i).getCode()!=history.get(i-2).getCode())
-			         {readbooks.add(history.get(i));
-			           i++;}}                                          
-			   else {
-				   if(history.get(i).getCode()!=history.get(i-1).getCode())
-			          {readbooks.add(history.get(i));
-			           i++;}
-				   
-			   }
-			 }
-	
-		
-		//------------collecting read books of same category from one borrower and setting recommendation score--------------------//
-	   ArrayList<Book> recs=null;
-	   for(Book rbook:readbooks) {
+		//initialize books
+		for(Book abook:history) {
+			if(last3books.indexOf(abook)==-1) {//checks if books are the same 
+			   last3books.add(abook);
+			if(last3books.size()==3)break;	
+			}
+			
+		}	
+		//collecting read books of same category from one borrower and setting recommendation score
+	    if(last3books.size()!=0) {
+		ArrayList<Book> recs=null;
+	   for(Book rbook:last3books) {
 		ArrayList<Borrower> pastborrowers=rbook.getPastBorrowers();
 		
 		    for(Borrower pastBorrower:pastborrowers)
@@ -167,7 +147,8 @@ public class LibraryData {
 			        //initial rating
 			          book.setRecommendationscore(0.0);
 					  
-					 if(pastBorrower.getFavouriteList().indexOf(book)!=-1)          //if the book belongs to favorite list it gets extra 0.5 points
+					 if(pastBorrower.getFavouriteList().indexOf(book)!=-1) 
+			        //if the book belongs to favorite list it gets extra 0.5 points
 					  {
 				      book.setRecommendationscore(book.getRecommendationscore()+0.5);}
 					 
@@ -181,35 +162,36 @@ public class LibraryData {
 								
 					book.setRating(rating);
 					}
-					else                                                   //if the book already exists
+					else  //if the book already exists
 					{
-						book.setRecommendationscore(book.getRecommendationscore()+0.1);//for each time the book was lent it gets extra recommendation points
+						book.setRecommendationscore(book.getRecommendationscore()+0.1);
+						//for each time the book was lent it gets extra recommendation points
 					}
 				}
 		    }	
 		
 		
 		    }}
-		   //------------------------------------------------------------------------------------------------------------------// 
-		    
-		  //-----------------------Sorting recs by recommendation score after every book is processed-----------------//
+		 	    
+		  //Sorting recs by recommendation score after every book is processed
 		    
 		   Collections.sort(recs);
-		   //add best recommendations to suggest list
+		   //add 10 best recommendations to suggest list
 		   int i=0;
 		   while(i<=recs.size()-1&&i<=10)
 		   {   suggest.add(recs.get(i));
 			   i++;
 		   }
 		   //0 recommendation points for next time
-		   for(Book book:recs) {book.setRecommendationscore(0);}    
+		   for(Book book:recs) {book.setRecommendationscore(0);}    }
+	    
 		    
 		return suggest;}
 	
 	
 	
 	
-	//-----setters and getters----------------//
+	//============================setters and getters==============
 	public ArrayList<Book> getListOfBooks() 
 	{
 		return ListOfBooks;
