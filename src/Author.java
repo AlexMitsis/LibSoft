@@ -17,7 +17,9 @@ public class Author {
   {
     ListOfBooks.add(b);    
   }
-  
+  public void removeBook(Book b) {
+	  ListOfBooks.remove(b);
+  }  
   public void deleteFollower(Borrower b)
   {
       ListOfFollowers.remove(b) ;

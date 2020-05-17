@@ -27,7 +27,7 @@ public class SystemNotification extends TimerTask  {
 			ArrayList<BookLending> borrowed=Main.librarydata.getBorrowedBooks();
 			
 			for(BookLending booklending:borrowed)
-			{if(booklending.getTimeLeft(LocalDate.now().plusDays(3))==3){//NA FTIA3W THN TIMELEFT
+			{if(booklending.getTimeLeft(LocalDate.now().plusDays(3))==3){
 				String text="To vivlio"+booklending.getBook().getTitle()+"prepei na epistrafei se 3 meres";
 				Borrower recipient=booklending.getBorrower();
 				Message warning=new Message(text,Main.librarian);

@@ -135,22 +135,14 @@ public class Book implements Comparable<Book>{
 		personWithBook = person
 		pastBorrowers.add(person)
 	}///den xreiazetai ,an nai giati*/
+	public static Book findBook(int code){
+		
+		for(Book book:Main.librarydata.getListOfBooks()) {
+			if(code==book.getCode()){return book;}
+		}	return null;
+	}
 	
-	public void requestBook(Borrower person)//ayth ypotithetai kaleitai mono apo ton bibliothhkario,tha phgainei sthn selida tou bibliou
-	{   
-		this.toggleAvailability();
-		if(person.isAbleToBorrow()&&person.getNumberOfBorrowedBooks()<3) {
-			//creating a booklending instance
-			BookLending bkl=new BookLending(person,this,0,LocalDate.now());
-			//updating borrower's info
-			person.setNumberOfBorrowedBooks(person.getNumberOfBorrowedBooks()+1);
-			//updates list of borrowed books
-		Main.librarydata.getBorrowedBooks().add(bkl);//booklending
-		Main.librarydata.getListOfBorrowers().add(person);
-		
-		}
-		
-	}	
+	
 	
 	public void toggleAvailability()
 	{

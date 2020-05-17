@@ -1,10 +1,12 @@
-import java.util.ArrayList;
-
 public class Librarian extends Member
 {
 
 	
-	public void addBok(Book aBook)
+	public Librarian(String username, String password) {
+		super(username, password);
+		// TODO Auto-generated constructor stub
+	}
+	public void addBook(Book aBook)
 	{
 		 
 
@@ -18,4 +20,4 @@ public class Librarian extends Member
 		
 	}
 }
-//SThn terminate booklending prepei na enhmerwnei to 	private ArrayList<Borrower> pastBorrowers; tou kathe book
+//thn terminate booklending tha thn balw sthn booklending

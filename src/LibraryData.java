@@ -1,5 +1,8 @@
-import javax.swing.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 public class LibraryData {
 	private ArrayList<Borrower> ListOfBorrowers ;
@@ -11,133 +14,60 @@ public class LibraryData {
 	private ArrayList<BookLending> BorrowedBooks;
 	private ArrayList<Author> Authors;
 	
-
-       
-    	public ArrayList<Book> getListOfBooks() 
-    	{
-    		return ListOfBooks;
-    	}
-    	
-	public ArrayList<Borrower> getWithPenalty() {
-		return WithPenalty;
-	}
-
-	public void setWithPenalty(Borrower withPenalty) {
-		WithPenalty.add(withPenalty);/********/		}
-
-	public void setListOfBooks(ArrayList<Book> listOfBooks) 
-    	{
-		ListOfBooks = listOfBooks;
-    	}
-
-   public ArrayList<Borrower> getListOfBorrowers() {
-		return ListOfBorrowers;
-	}
-
-	public void setListOfBorrowers(ArrayList<Borrower> listOfBorrowers) {
-		ListOfBorrowers = listOfBorrowers;
-	}	
-	
-    	public void setDelayedBooks(ArrayList<BookLending> delayedBooks) {
-		DelayedBooks = delayedBooks;
-	}
-
-	public ArrayList<BookLending> getDelayedBooks() {
-		return DelayedBooks;
-	}
-
-	public ArrayList<Borrower> getPenaltyList() {
-    		return PenaltyList;
-    	}
-
-    	public void setPenaltyList(ArrayList<Borrower> penaltyList) {
-    		PenaltyList = penaltyList;
-    	}
-
-   
-    	public ArrayList<BookLending> getBorrowedBooks() {
-    		return BorrowedBooks;
-    	}
-
-    	public void setBorrowedBooks(ArrayList<BookLending> borrowedBooks) {
-    		BorrowedBooks = borrowedBooks;
-    	}
-
-    	public ArrayList<Author> getAuthors() {
-    		return Authors;
-    	}
-
-    	public void setAuthors(ArrayList<Author> authors) {
-    		Authors = authors;
-    	}
     	
     		
-    	public void BookDiscarding(int Code)
-    	    { //ψαχνει το βιβλιο βασει σειριακου book.code
-    	    	
-    	    	  for(Book  book : ListOfBooks)
-    	    	  {
-    	    	 	if(book.getCode()==Code){
-    	    	  		ListOfBooks.remove(book); 
-    	    	  		
-    	    	  }
-    	    	 //na afairei ki apo tis listes tou author tou 
-		// ara na baloume kai mia lista ArrayList<Book> authorBooks?
-    	    }}
+    	public void BookDiscarding(int code)//tha zhtaei to kwdiko tou bibliou
+    	    { 
+    	    	Book xbook=Book.findBook(code);
+    	    	 	ListOfBooks.remove(xbook);
+    	    	 	Author author=xbook.getAuthor();//afairei apo th lista ergwn tou syggrafea
+    	    	   author.removeBook(xbook);
+    	    }
     		
-	private void createMembership()//void?nai
-	{
+	public void createMembership()//kaleitai apo bibliothhkario
+	{  
 		String username = JOptionPane.showInputDialog("Onoma kainourgioy xrhsth: ");
 		String password = JOptionPane.showInputDialog("Kwdikos kainourgiou xrhsth: ");
 		
-		String pen = JOptionPane.showInputDialog("Posa penalties exei?: ");
-		int penalties = Integer.parseInt(pen);
-		
-		Borrower newBorrower = new Borrower(username, password, penalties);
-		ListOfBorrowers.add(newBorrower);
-		
+		Borrower newb=new Borrower(username,password,null,null,null,null,true,0,null,0,null);
+		//ehmerwsh listwn;
+		Main.librarydata.getListOfBorrowers().add(newb);	
 	}
 	
 
-	public void terminateMembership(String Username)
-	 {
-	  	for(Borrower  aBorrower : ListOfBorrowers)
-	   	   {
-	   		if(aBorrower.getUsername().equalsIgnoreCase(Username))
-	   		    {
-	   			ListOfBorrowers.remove(aBorrowerr);
-	  			System.out.println("H diagrafh epiteuxthi!"); 
-	  			}
-	  		}
-	  
-			for(Borrower  borrower : PenaltyList)
-	 		{
-	 			if(borrower.getUsername().equalsIgnoreCase(Username))
-	  			{
-	  				PenaltyList.remove(borrower);
-	 				System.out.println("H diagrafh epiteuxthi!)"
-	  			}
-	  		}
+	public void terminateMembership(String username)
+	 {Borrower b=Borrower.FindBorrower(username);	    
+		if(b!=null) {
+			Main.librarydata.getListOfBorrowers().remove(b);	  	
+	        //removes borrower from other lists
+            if(!b.isAbleToBorrow()) 	  	
+			{Main.librarydata.getPenaltyList().remove(b);}
+            
+            //removes borrower from authors lists
+            for(Author author:b.getAuthorsFollowing())
+            {
+            	author.deleteFollower(b);
+            }
+            } 
+		    else {System.out.println("O xrhsths de brethhke");}
 	  
 	}
 	 
-		
 	
-	public Book searchBook(String Title)
-	{   Book b=null;
+	public ArrayList<Book> searchBook(String Title)
+	{   ArrayList<Book> blist=new ArrayList<Book>();
 		boolean found = false;
 		
 		for(Book  aBook : ListOfBooks)
 		{
-			if(aBook.getTitle().equalsIgnoreCase(Title)){ 
-				found = true;
-				return aBook; 
-				
+			if(aBook.getTitle().equalsIgnoreCase(Title))
+			{ found=true;
+				blist.add(aBook);
 			}	
 		}
 		if(found == false)
 			System.out.println("Den uparxei biblio me tetoio titlo.");//grafikhs diepafhs
-		return b;
+		return blist;//prepei na emfanizetai h lista me ta biblia.anoigei diepafh apo edw kai tha einia void
 	}
 	
 	public ArrayList<Book> searchByFilter(String WantedCategory)
@@ -149,12 +79,7 @@ public class LibraryData {
 				wantedCategoryBooks.add(aBook);
 			}	
 		}
-		for(Book  Abook : wantedCategoryBooks)/*emfanizontai sto gui tou xrhsth,isws na mhn xreiastei na epistrafei lista biliwn??*/
-		{
-			System.out.println(Abook.getTitle());
-			System.out.println(Abook.getCategory());
-			
-		}
+		//prepei na emfanizetai h lista me ta biblia.anoigei diepafh apo edw kai tha einia void
 		return wantedCategoryBooks;
       }
 	
@@ -163,27 +88,22 @@ public class LibraryData {
 		Scanner keyboard = new Scanner(System.in);
         boolean login=false;
         boolean islibrarian=false;
+    	//protreptiko mhynma apo grafikh diepaffh
+    	System.out.println("Doste onoma kai kwdiko");
+	   String username=keyboard.nextLine();
+       String password=keyboard.nextLine();
+       
+       Borrower potential=new Borrower(username,password);
+       
         while(!login) {
-        	//protreptikomhynma pao grafikh diepaffh
-        	System.out.println("Doste onoma kai kwdiko");
-		   String username=keyboard.nextLine();
-	       String password=keyboard.nextLine();
-	       Borrower potential=new Borrower(username,password);
 	       if(username.equalsIgnoreCase("Librarian")&&password.equalsIgnoreCase("LibrarianPassword")) 
 	       {islibrarian=true;
 	    	   login=true;}
 	       else if(!username.equalsIgnoreCase("Librarian")) 
 	       {
-	    	   ArrayList<Borrower> users=Main.librarydata.getListOfBorrowers();
-	    	   boolean found=false;
-	    	   int i=0;
-	    	   while(!found && i<=users.size()-1)
-	    	   {
-	    		   if(users.get(i)==potential) {
-	    			   found=true;
-	    			   login=true;
-	    			   }
-	    	   }
+	    	  for(Borrower user:Main.librarydata.getListOfBorrowers()) {
+	    		  if(user==potential) {login=true;break;}
+	    	  }	    	   	    	
 	       }
 	       else System.out.println("Kati den phge kala");
 		}
@@ -191,10 +111,9 @@ public class LibraryData {
         else {/*dei3e thn diepafh xrhsth*/}
         }
         
-	
+	//==============================================================//
 	
 
-	//---------------------------------------------------------------------------------------------------------------------------------------------------//
 	public ArrayList<Book> createSuggestions(Borrower m)
 	{
 		ArrayList<Book> suggest=null;
@@ -283,13 +202,68 @@ public class LibraryData {
 			   i++;
 		   }
 		   //0 recommendation points for next time
-		   for(Book book:recs) {book.setRecommendationscore(0);}
-		   
-	   
-		   
-		    
-		    
+		   for(Book book:recs) {book.setRecommendationscore(0);}    
 		    
 		return suggest;}
+	
+	
+	
+	
+	//-----setters and getters----------------//
+	public ArrayList<Book> getListOfBooks() 
+	{
+		return ListOfBooks;
+	}
+	
+public ArrayList<Borrower> getWithPenalty() {
+	return WithPenalty;
 }
-//gj
+
+
+
+public void setListOfBooks(ArrayList<Book> listOfBooks) 
+	{
+	ListOfBooks = listOfBooks;
+	}
+
+public ArrayList<Borrower> getListOfBorrowers() {
+	return ListOfBorrowers;
+}
+
+public void setListOfBorrowers(ArrayList<Borrower> listOfBorrowers) {
+	ListOfBorrowers = listOfBorrowers;
+}	
+
+	public void setDelayedBooks(ArrayList<BookLending> delayedBooks) {
+	DelayedBooks = delayedBooks;
+}
+
+public ArrayList<BookLending> getDelayedBooks() {
+	return DelayedBooks;
+}
+
+public ArrayList<Borrower> getPenaltyList() {
+		return PenaltyList;
+	}
+
+	public void setPenaltyList(ArrayList<Borrower> penaltyList) {
+		PenaltyList = penaltyList;
+	}
+
+
+	public ArrayList<BookLending> getBorrowedBooks() {
+		return BorrowedBooks;
+	}
+
+	public void setBorrowedBooks(ArrayList<BookLending> borrowedBooks) {
+		BorrowedBooks = borrowedBooks;
+	}
+
+	public ArrayList<Author> getAuthors() {
+		return Authors;
+	}
+
+	public void setAuthors(ArrayList<Author> authors) {
+		Authors = authors;
+	}
+}

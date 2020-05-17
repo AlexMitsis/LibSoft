@@ -15,12 +15,47 @@ public class Borrower extends Member implements Comparable<Borrower>{
 	private int numberOfPenalties;
 	private LocalDate dateOfLastPenlty;
 	private int numberOfBorrowedBooks;
+	private ArrayList<Author> authorsFollowing;
 	
 	
 	
 	
 	
+	public Borrower(String username, String password, ArrayList<Book> currentBorrowedBooks,
+			ArrayList<Book> favouriteList, ArrayList<Book> toReadList, ArrayList<Book> history, boolean ableToBorrow,
+			int numberOfPenalties, LocalDate dateOfLastPenlty, int numberOfBorrowedBooks, ArrayList<Author> authorsFollowing) {
+		super(username, password);
+		this.currentBorrowedBooks = currentBorrowedBooks;
+		this.favouriteList = favouriteList;
+		this.toReadList = toReadList;
+		this.history = history;
+		this.ableToBorrow = ableToBorrow;
+		this.numberOfPenalties = numberOfPenalties;
+		this.dateOfLastPenlty = dateOfLastPenlty;
+		this.numberOfBorrowedBooks = numberOfBorrowedBooks;
+		 this.authorsFollowing=authorsFollowing;
+	}
 	
+	public static Borrower FindBorrower(String username) {//mono gia to systhma
+		ArrayList<Borrower> list=Main.librarydata.getListOfBorrowers();
+	
+	 for(Borrower b:list) {if(b.getUsername().equalsIgnoreCase(username))
+	 {return b;}}
+	 return null;
+	 }
+	
+	public ArrayList<Author> getAuthorsFollowing() {
+		return authorsFollowing;
+	}
+
+
+
+	public void setAuthorsFollowing(ArrayList<Author> authorsFollowing) {
+		this.authorsFollowing = authorsFollowing;
+	}
+
+
+
 	public int getNumberOfBorrowedBooks() {
 		return numberOfBorrowedBooks;
 	}
