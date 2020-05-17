@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Author {
   
@@ -19,7 +20,7 @@ public class Author {
   
   public void deleteFollower(Borrower b)
   {
-      ListOfFollowers.remove(b) 
+      ListOfFollowers.remove(b) ;
   }
   
   public void addFollower(Borrower b)
@@ -30,16 +31,19 @@ public class Author {
   public void updateListOfBooks(Book newBook)
     //ton paralhpth pws ton bazw?
   {
-      String mhnuma = "Neo biblio enos suggrafea pou akoloutheite prosthethike!" ;
-      Member apostoleas = new Librarian(username, password);
-    //mas noiazei na baloume username kai password ston librarian?
+      String mhnuma = "Neo biblio enos suggrafea pou akoloutheite prosthethike!" ;///ououououou teleiaaa
+   //   Member apostoleas = new Librarian(username, password);
+      
+      //xrhsimopoieitai monadikos bibliothhkarios pou dhlwthhke sthn main
+      
+    //mas noiazei na baloume username kai password ston librarian?no
     
       ListOfBooks.add(newBook);
-      Message message = new Message(mhnuma, apostoleas);
+      Message message = new Message(mhnuma, Main.librarian);
       
       for(Borrower follower : ListOfFollowers)
       {
-          MessageToSome(follower, message); 
+          Message.messageToSome(follower, message); 
       }
     
   }

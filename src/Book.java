@@ -13,7 +13,7 @@ public class Book implements Comparable<Book>{
 	private String publisher;
 	private ArrayList<String> comments;
 	private Boolean borrowed = false;
-	private Borrower personWithBook;
+//	private Borrower personWithBook;
 	 //private Scanner scanner = new Scanner(System.in);
 	//CreateSuggestions uses
 		private ArrayList<Borrower> pastBorrowers;
@@ -22,8 +22,8 @@ public class Book implements Comparable<Book>{
 
 	
 	public Book(int code, String title, Author author, String category, int year, String language, float rating,
-				String publisher, ArrayList<String> comments, Boolean borrowed, Borrower personWithBook
-				) {
+				String publisher, ArrayList<String> comments, Boolean borrowed/*, Borrower personWithBook
+				*/) {
 			super();
 			this.code = code;
 			this.title = title;
@@ -35,7 +35,7 @@ public class Book implements Comparable<Book>{
 			this.publisher = publisher;
 			this.comments = comments;
 			this.borrowed = borrowed;
-			this.personWithBook = personWithBook;
+			//this.personWithBook = personWithBook;
 			
 			this.pastBorrowers = null;
 			this.recommendationscore = 0;
