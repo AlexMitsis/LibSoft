@@ -90,17 +90,11 @@ public class LibraryData {
 		String username = JOptionPane.showInputDialog("Onoma kainourgioy xrhsth: ");
 		String password = JOptionPane.showInputDialog("Kwdikos kainourgiou xrhsth: ");
 		
-		String ans = JOptionPane.showInputDialog("Gia bibliothikario patiste 1, gia daneizomeno patiste 2: ");
-		int answer = Integer.parseInt(ans);
-		if(answer==2) {
-			String pen = JOptionPane.showInputDialog("Posa penalties exei?: ");
-			int penalties = Integer.parseInt(pen);
-			Borrower newBorrower = new Borrower(username, password, penalties);
-			ListOfBorrowers.add(newBorrower);
-		}else {
-			Librarian newLibrarian = new Librarian(username, password);
-			ListOfLibrarians.add(newLibrarian);
-		}
+		String pen = JOptionPane.showInputDialog("Posa penalties exei?: ");
+		int penalties = Integer.parseInt(pen);
+		
+		Borrower newBorrower = new Borrower(username, password, penalties);
+		ListOfBorrowers.add(newBorrower);
 		
 	}
 	
