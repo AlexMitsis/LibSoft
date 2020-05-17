@@ -28,7 +28,19 @@ public class Author {
   }
   
   public void updateListOfBooks(Book newBook)
+    //ton paralhpth pws ton bazw?
   {
+      String mhnuma = "Neo biblio enos suggrafea pou akoloutheite prosthethike!" ;
+      Member apostoleas = new Librarian(username, password);
+    //mas noiazei na baloume username kai password ston librarian?
+    
+      ListOfBooks.add(newBook);
+      Message message = new Message(mhnuma, apostoleas);
+      
+      for(Borrower follower : ListOfFollowers)
+      {
+          MessageToSome(follower, message); 
+      }
     
   }
 
