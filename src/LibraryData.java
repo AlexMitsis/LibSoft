@@ -209,13 +209,13 @@ public class LibraryData {
          float rating=book.getRating();
 
      //epishs tha mporousame na valoume arnhtiko recscore an to rating isoutai me 1
-          if(rating == 2)
+          if(rating <2)
          	book.setRecommendationscore(book.getRecommendationscore() + 0.1);
-           else if(rating == 3)
+           else if(rating >=2 && rating< 3)
 	        book.setRecommendationscore(book.getRecommendationscore() + 0.3);
-           else if(rating == 4)
+           else if(rating >= 3&& rating<4)
          	book.setRecommendationscore(book.getRecommendationscore() + 0.4);
-          else if(rating == 5)
+          else if(rating >= 4)
          	book.setRecommendationscore(book.getRecommendationscore() + 0.5);
 		
               book.setRating(rating);
