@@ -14,7 +14,9 @@ public class Librarian extends Member
 	public void addBook(Book aBook)
 	{
 		ArrayList<Book> list=Main.librarydata.getListOfBooks();
+		Author booksAuthor=aBook.getAuthor();
 		
+		booksAuthor.updateListOfBooks(aBook);
 		list.add(aBook);
 		Main.librarydata.setListOfBooks(list);
 
