@@ -112,9 +112,16 @@ public class Book implements Comparable<Book>{
 		this.recommendationscore = recommendationscore;
 	}
 
+	public Boolean getBorrowed() 
+	{
+		return borrowed;
+	}
 
+	public void setBorrowed(Boolean borrowed) 
+	{
+		this.borrowed = borrowed;
+	}
 
-	
 	public Book(int code, String title, Author author, String category, int year, String language, float rating,
 				String publisher, ArrayList<String> comments, Boolean borrowed/*, Borrower personWithBook
 				*/) {
