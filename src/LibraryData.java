@@ -41,9 +41,11 @@ public class LibraryData {
             	for(Author author:b.getAuthorsFollowing())
             		author.deleteFollower(b);
         	} 
+          }
 		    else
 		    	System.out.println("O xrhsths de brethhke");
-	}
+	   
+		}
 	
 	public void Login()//kaleitai otan oxrhsths pathsei to login
 	{ 
@@ -81,9 +83,9 @@ public class LibraryData {
 		}
         
         if(islibrarian) 
-        	/*dei3e th diepafh bibliothhkariou*/
+        {/*dei3e th diepafh bibliothhkariou*/}
         else 
-        	/*dei3e thn diepafh xrhsth*/
+        {	/*dei3e thn diepafh xrhsth*/}
         
 	}
    	
@@ -127,10 +129,10 @@ public class LibraryData {
 		//prepei na emfanizetai h lista me ta biblia.anoigei diepafh apo edw kai tha einia void
 		return wantedCategoryBooks;
     }
-    
+    //--------------------------------------------------------------------------------------------------------------//
 	public ArrayList<Book> createSuggestions(Borrower borrower)
 	{
-		ArrayList<Book> suggest=null;
+		ArrayList<Book> suggest=new ArrayList<Book>();
 		ArrayList<Book> last3books=new ArrayList<Book>();//books in her history record
 		ArrayList<Book> history=borrower.getHistory();
 		
@@ -145,63 +147,87 @@ public class LibraryData {
 		}
 			
 		//collecting read books of same category from one borrower and setting recommendation score
-	    if(last3books.size() != 0)
-			ArrayList<Book> recs=null;
+	    if(last3books.size() != 0) 
+	    {
+			  ArrayList<Book> recs=new ArrayList<Book>();//Edw krataei ta ypopsifia biblia ,apo auth th lista tha kraththoun ta 10 me th megalyterh bathmologia
 	    
-	   	for(Book rbook:last3books) 
-		{
-			ArrayList<Borrower> pastborrowers=rbook.getPastBorrowers();
-		
-		    for(Borrower pastBorrower:pastborrowers)
-				for(Book book:pastBorrower.getHistory())  
-					if(book.getCategory().equalsIgnoreCase(rbook.getCategory())) //if it is of same genre
-					{
-						if(recs.indexOf(book) == -1)//and doesn't already exist in the list          
-			        	    recs.add(book);
-			        	//initial rating
-			          	book.setRecommendationscore(0.0);
-					  
-					    if(pastBorrower.getFavouriteList().indexOf(book)!=-1)//if the book belongs to favorite list it gets extra 0.5 points
-				            book.setRecommendationscore(book.getRecommendationscore()+0.5);
-		            
-					    //extra recommendation points according to its rating
-					    float rating=book.getRating();
-					
-					    //epishs tha mporousame na valoume arnhtiko recscore an to rating isoutai me 1
-					    if(rating == 2)
-					    	book.setRecommendationscore(book.getRecommendationscore() + 0.1);
-					    else if(rating == 3)
-					    	book.setRecommendationscore(book.getRecommendationscore() + 0.3);
-					    else if(rating == 4)
-					    	book.setRecommendationscore(book.getRecommendationscore() + 0.4);
-					    else if(rating == 5)
-					    	book.setRecommendationscore(book.getRecommendationscore() + 0.5);
-								
-					    book.setRating(rating);
-					}
-					else  //if the book already exists
-					{
-						book.setRecommendationscore(book.getRecommendationscore()+0.1);
-						//for each time the book was lent it gets extra recommendation points
-					}
-		    //allh mia idea tha htan na vazei pontous (0.1-0.2) automata se ola ta vivlia pou anhkoun sto eidos kathe prosfata daneismenou vivliou
-		}	
-		    
-		//Sorting recs by recommendation score after every book is processed
-		Collections.sort(recs);
-		//add 10 best recommendations to suggest list
-		int i=0;
-		while(i<=recs.size()-1&&i<=10)
-		{   
-			suggest.add(recs.get(i));
-			i++;
-		}
-		//0 recommendation points for next time
-		for(Book book:recs)
-			book.setRecommendationscore(0); 
-	    
+	   	      for(Book rbook:last3books) //gia kathe ena apo ta 3 teleytaia biblia pou diabase
+		      {
+	   	    	  
+			         ArrayList<Borrower> pastborrowers=rbook.getPastBorrowers();//pairnei th lista me tous xrhstes pou to daneisthkan pio prin
+		        
+		             for(Borrower pastBorrower:pastborrowers)  //gia kathe enan apo tous palious anagnostes
+		             {
+				            for(Book book:pastBorrower.getHistory())  //diasxizei to istoriko twn bibliwn pou diavase
+				           {	
+					              if(book.getCategory().equalsIgnoreCase(rbook.getCategory())) //an to biblio einai tou idiou eidous
+					              {
+						                if(recs.indexOf(book) == -1)//kai den uparxei sthn lista recs    
+						                      {
+							                  recs.add(book);   //to prosthetei sth lista
+							                  LibraryData.setInitialRecommendationRating(book, pastBorrower);// kai arxikopoiei to recommendation rating
+					                           }
+					                     else  //an to biblio yparxei prostithedai pontoi
+				                             {
+						                       book.setRecommendationscore(book.getRecommendationscore()+0.1);
+				         	                  }
+		                          }	
+				            }
+		               } 
+		      } 
+	   	      
+		      //allh mia idea tha htan na vazei pontous (0.1-0.2) automata se ola ta vivlia pou anhkoun sto eidos kathe prosfata daneismenou vivliou
+		       
+		        
+		      Collections.sort(recs);// ta3inomei th lista gia na parei ta 10 megalytera reccomendation ratings
+		         
+	          int i=0;
+		      while(i<=recs.size()-1&&i<=10)
+		       {   
+			     suggest.add(recs.get(i)); // prosthetei sthn lista suggest pou epistrefetai
+			     i++;
+		       }
+		       //0 recommendation points for next time
+		        for(Book book:recs)
+			    book.setRecommendationscore(0); 
+	    }
+	   	      
 		return suggest;
 	}
+		        
+		        
+   public static void setInitialRecommendationRating(Book book,Borrower pastBorrower)
+   {
+	   
+	   //initial rating
+	        book.setRecommendationscore(0.0);
+
+        if(pastBorrower.getFavouriteList().indexOf(book)!=-1)//if the book belongs to favorite list it gets extra 0.5 points
+          book.setRecommendationscore(book.getRecommendationscore()+0.5);
+
+        //extra recommendation points according to its rating
+         float rating=book.getRating();
+
+     //epishs tha mporousame na valoume arnhtiko recscore an to rating isoutai me 1
+          if(rating == 2)
+         	book.setRecommendationscore(book.getRecommendationscore() + 0.1);
+           else if(rating == 3)
+	        book.setRecommendationscore(book.getRecommendationscore() + 0.3);
+           else if(rating == 4)
+         	book.setRecommendationscore(book.getRecommendationscore() + 0.4);
+          else if(rating == 5)
+         	book.setRecommendationscore(book.getRecommendationscore() + 0.5);
+		
+              book.setRating(rating);
+	   
+   }
+		        
+		        
+		        
+		        
+		        
+		        
+		        
 	
 	
 	
