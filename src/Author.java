@@ -50,7 +50,17 @@ public class Author {
     
   }
 
+public ArrayList<Borrower> getListOfFollowers() 
+{
+	return ListOfFollowers;
 }
-//ο αθορ εχει λιστα με τα βιβλια του και λιστα με τους ακολουθους του,νε την απντειτ που θα καλει ο βιβλιοθηκαριος
-//καθε φορα που εχει ενα καινουργιο βιβλιο του ,προσθετει το βιβλιο στη λιστα και στελνει μηνυμα στους αναγνωστες
-//void updateListOfBooks(BOok newbook)
+
+public void setListOfFollowers(ArrayList<Borrower> listOfFollowers) 
+{
+	ListOfFollowers = listOfFollowers;
+}
+  
+  
+
+}
+
