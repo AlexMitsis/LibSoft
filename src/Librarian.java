@@ -1,6 +1,5 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Librarian extends Member
 {
@@ -58,21 +57,23 @@ public class Librarian extends Member
 	
 	public void setBookBorrowed(Book b,Borrower m)
 	{
-		ArrayList<Borrower> list=Main.librarydata.getPenaltyList();
-		ArrayList<BookLending> list2=Main.librarydata.getBorrowedBooks();
+		ArrayList<BookLending> list=Main.librarydata.getBorrowedBooks();
 		
 		if(m.isAbleToBorrow() && !b.getBorrowed() && m.getNumberOfBorrowedBooks()<3)
 		{
-			BookLending lending= new BookLending(m,b);
+			BookLending lending= new BookLending(m,b,0,LocalDate.now());
 			
-			list2.add(lending);
-			Main.librarydata.setBorrowedBooks(list2);
+			list.add(lending);
+			Main.librarydata.setBorrowedBooks(list);
 			m.setNumberOfBorrowedBooks(m.getNumberOfBorrowedBooks()+1);
 			b.toggleAvailability();
 		}
+		else
+			System.out.println("Unable to borrow at the moment.Book is not availiable, you may have a penalty or you already have borrowed the maximum number of books");
 	}
 	
-	private void bookMonitoring()
+	
+	public void bookMonitoring()
 	{
 		ArrayList<BookLending> list=Main.librarydata.getBorrowedBooks();
 		LocalDate d=LocalDate.now();
@@ -82,7 +83,6 @@ public class Librarian extends Member
 			System.out.println(bl.getBorrower().getUsername()+" has borrowed "+bl.getBook().getTitle()+","+bl.getBook().getCode()+" Time left: "+bl.getTimeLeft(d));
 		}
 	}
-	
 	
 }
 //thn terminate booklending tha thn balw sthn booklending
