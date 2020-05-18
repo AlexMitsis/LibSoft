@@ -115,7 +115,7 @@ public class LibraryData {
 
 	public ArrayList<Book> createSuggestions(Borrower borrower)
 	{
-		ArrayList<Book> suggest=null;
+		ArrayList<Book> suggest=new ArrayList<Book>();
 		ArrayList<Book> last3books=new ArrayList<Book>();//books in her history record
 		ArrayList<Book> history=borrower.getHistory();
 		
@@ -129,7 +129,7 @@ public class LibraryData {
 		}	
 		//collecting read books of same category from one borrower and setting recommendation score
 	    if(last3books.size()!=0) {
-		ArrayList<Book> recs=null;
+		ArrayList<Book> recs=new ArrayList<Book>();
 	   for(Book rbook:last3books) {
 		ArrayList<Borrower> pastborrowers=rbook.getPastBorrowers();
 		
@@ -183,10 +183,10 @@ public class LibraryData {
 			   i++;
 		   }
 		   //0 recommendation points for next time
-		   for(Book book:recs) {book.setRecommendationscore(0);}    }
+		   for(Book book:recs) {book.setRecommendationscore(0);} return suggest;   }
 	    
 		    
-		return suggest;}
+		return null;}
 	
 	
 	
