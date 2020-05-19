@@ -25,7 +25,8 @@ public class Message {
 	}
 	//Static methods are called to send messages
 	//used by librarian for messages to all members.For each member personalized suggestions will be generated
-	public static void MessageToAllMembers(Message message) {
+	
+	public static void MessageToAllMembersWithRecommendations(Message message) {
 		for(Borrower recipient:Main.librarydata.getListOfBorrowers()) 
 		{ArrayList<Book> list=Main.librarydata.createSuggestions(recipient);
 		String books="Here are some books based on your history:";

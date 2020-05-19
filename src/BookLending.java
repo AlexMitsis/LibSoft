@@ -17,8 +17,8 @@ public  long getTimeLeft(LocalDate now)//before the book shall be returned
   }
 //--------------Lending Actions-------------------------------//
 
-//Nomizw ayth edw einai perith
-public void initiateBookLending(String username,int bookcode)//ayth ypotithetai kaleitai mono apo ton bibliothhkario,tha phgainei sthn selida tou bibliou
+//Nomizw ayth edw einai perith/*
+/*public void initiateBookLending(String username,int bookcode)//ayth ypotithetai kaleitai mono apo ton bibliothhkario,tha phgainei sthn selida tou bibliou
 {   Book book=Book.findBook(bookcode);                       //ypotithetai oti ginetai me fysikh paousia
 
     Borrower borrower=Borrower.FindBorrower(username);
@@ -35,9 +35,10 @@ public void initiateBookLending(String username,int bookcode)//ayth ypotithetai 
 	
 	}
 	
-}	
+}*/	
     
-  public void RenewLendingPeriod(String username,int bookcode)//upotithetai oti bazei swsta ,kaleitai apo ton bibliothhkario
+ /*
+   public void RenewLendingPeriod(String username,int bookcode)//upotithetai oti bazei swsta ,kaleitai apo ton bibliothhkario
   {BookLending bl=BookLending.findBookLending(username, bookcode);
    if(bl!=null) {
      if(bl.getRenewalCounter()<3) {
@@ -49,10 +50,12 @@ public void initiateBookLending(String username,int bookcode)//ayth ypotithetai 
      }}
    else System.out.println("De brethke o daneismos");
   }
+  */
+
   
   
 //SThn terminate booklending prepei na enhmerwnei to 	private ArrayList<Borrower> pastBorrowers; tou kathe book
-  public void terminateBookLending(String username,int bookcode)
+  /*public void terminateBookLending(String username,int bookcode)
   {BookLending bl=BookLending.findBookLending(username, bookcode);
   if(bl!=null) {
 	  //enhmerwsh olwn twn listwn
@@ -60,7 +63,7 @@ public void initiateBookLending(String username,int bookcode)//ayth ypotithetai 
 	//SThn terminate booklending prepei na enhmerwnei to 	private ArrayList<Borrower> pastBorrowers; tou kathe book
   }
   else System.out.println("De brethke o daneismos");
-  }
+  }*/
 
   public static BookLending findBookLending(String username,int bookcode)//briskei to daneismo
   { 

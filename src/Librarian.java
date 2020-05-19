@@ -71,7 +71,29 @@ public class Librarian extends Member
 		else
 			System.out.println("Unable to borrow at the moment.Book is not availiable, you may have a penalty or you already have borrowed the maximum number of books");
 	}
-	
+	/*public void RenewLendingPeriod(String username,int bookcode)//upotithetai oti bazei swsta ,kaleitai apo ton bibliothhkario
+	  {BookLending bl=BookLending.findBookLending(username, bookcode);
+	   if(bl!=null) {
+	     if(bl.getRenewalCounter()<3) {
+	    	 bl.setRenewalCounter(bl.getRenewalCounter()+1);
+	    	 bl.setDateborrowed(LocalDate.now());
+	     }//o xrhsths ews 3 fores tha to daneistei
+	     else {
+	    	 System.out.println("Den epitrepetai epipleon daneismos");
+	     }}
+	   else System.out.println("De brethke o daneismos");
+	  }
+	*/
+	/*  public void terminateBookLending(String username,int bookcode)
+  {BookLending bl=BookLending.findBookLending(username, bookcode);
+  if(bl!=null) {
+	  //enhmerwsh olwn twn listwn
+
+	//SThn terminate booklending prepei na enhmerwnei to 	private ArrayList<Borrower> pastBorrowers; tou kathe book
+  }
+  else System.out.println("De brethke o daneismos");
+  }
+*/
 	
 	public void bookMonitoring()
 	{

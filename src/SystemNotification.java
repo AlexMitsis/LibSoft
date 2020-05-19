@@ -23,11 +23,11 @@ public class SystemNotification extends TimerTask  {
 	
 	private static class Warning{
 		public static void checkforWarning() 
-		{
+		{   int timeleft=3;
 			ArrayList<BookLending> borrowed=Main.librarydata.getBorrowedBooks();
 			
 			for(BookLending booklending:borrowed)
-			{if(booklending.getTimeLeft(LocalDate.now().plusDays(3))==3){
+			{if(booklending.getTimeLeft(LocalDate.now().plusDays(3))==timeleft){
 				String text="To vivlio"+booklending.getBook().getTitle()+"prepei na epistrafei se 3 meres";
 				Borrower recipient=booklending.getBorrower();
 				Message warning=new Message(text,Main.librarian);

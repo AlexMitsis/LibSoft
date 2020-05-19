@@ -2,11 +2,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Borrower extends Member implements Comparable<Borrower>{
-
-	public Borrower(String username, String password) {
-		super(username, password);
-		// TODO Auto-generated constructor stub
-	}
+    public final int MAxBorrowedBooks=3;
 	private ArrayList<Book> currentBorrowedBooks;
 	private ArrayList<Book> favouriteList;
 	private ArrayList<Book> toReadList;
@@ -16,11 +12,7 @@ public class Borrower extends Member implements Comparable<Borrower>{
 	private LocalDate dateOfLastPenlty;
 	private int numberOfBorrowedBooks;
 	private ArrayList<Author> authorsFollowing;
-	
-	
-	
-	
-	
+		
 	public Borrower(String username, String password, ArrayList<Book> currentBorrowedBooks,
 			ArrayList<Book> favouriteList, ArrayList<Book> toReadList, ArrayList<Book> history, boolean ableToBorrow,
 			int numberOfPenalties, LocalDate dateOfLastPenlty, int numberOfBorrowedBooks, ArrayList<Author> authorsFollowing) {
@@ -39,7 +31,7 @@ public class Borrower extends Member implements Comparable<Borrower>{
 	public static Borrower FindBorrower(String username) {//mono gia to systhma
 		ArrayList<Borrower> list=Main.librarydata.getListOfBorrowers();
 	
-	 for(Borrower b:list) {if(b.getUsername().equalsIgnoreCase(username))
+	        for(Borrower b:list) {if(b.getUsername().equalsIgnoreCase(username))
 	 {return b;}}
 	 return null;
 	 }
@@ -55,6 +47,10 @@ public class Borrower extends Member implements Comparable<Borrower>{
 	}
 
 
+
+	public int getMAxBorrowedBooks() {
+		return MAxBorrowedBooks;
+	}
 
 	public int getNumberOfBorrowedBooks() {
 		return numberOfBorrowedBooks;
@@ -103,6 +99,11 @@ public class Borrower extends Member implements Comparable<Borrower>{
 	}
 	public void setHistory(ArrayList<Book> history) {
 		this.history = history;
+	}
+
+	public Borrower(String username, String password) {
+		super(username, password);
+		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public int compareTo(Borrower o) {

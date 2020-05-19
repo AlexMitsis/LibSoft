@@ -89,7 +89,7 @@ public class LibraryData {
         
 	}
    	
-   // ======Methodoi gia biblia======	
+   // ======Methodoi gia biblia========
 	public void BookDiscarding(int code)//tha zhtaei to kwdiko tou bibliou
     { 
 		Book xbook=Book.findBook(code);
@@ -130,6 +130,7 @@ public class LibraryData {
 		return wantedCategoryBooks;
     }
     //--------------------------------------------------------------------------------------------------------------//
+	
 	public ArrayList<Book> createSuggestions(Borrower borrower)
 	{
 		ArrayList<Book> suggest=new ArrayList<Book>();
@@ -165,7 +166,7 @@ public class LibraryData {
 						                if(recs.indexOf(book) == -1)//kai den uparxei sthn lista recs    
 						                      {
 							                  recs.add(book);   //to prosthetei sth lista
-							                  LibraryData.setInitialRecommendationRating(book, pastBorrower);// kai arxikopoiei to recommendation rating
+							                  this.setInitialRecommendationRating(book, pastBorrower);// kai arxikopoiei to recommendation rating
 					                           }
 					                     else  //an to biblio yparxei prostithedai pontoi
 				                             {
@@ -187,38 +188,41 @@ public class LibraryData {
 			     suggest.add(recs.get(i)); // prosthetei sthn lista suggest pou epistrefetai
 			     i++;
 		       }
-		       //0 recommendation points for next time
+		       //mhdenizei ta ratings gia mellontikes xrhseis
 		        for(Book book:recs)
 			    book.setRecommendationscore(0); 
 	    }
 	   	      
 		return suggest;
 	}
+		          
+	
+	
 		        
-		        
-   public static void setInitialRecommendationRating(Book book,Borrower pastBorrower)
+  private void setInitialRecommendationRating(Book book,Borrower pastBorrower)
    {
 	   
 	   //initial rating
-	        book.setRecommendationscore(0.0);
+	         book.setRecommendationscore(0.0);
 
-        if(pastBorrower.getFavouriteList().indexOf(book)!=-1)//if the book belongs to favorite list it gets extra 0.5 points
-          book.setRecommendationscore(book.getRecommendationscore()+0.5);
+             if(pastBorrower.getFavouriteList().indexOf(book)!=-1)//if the book belongs to favorite list it gets extra 0.5 points
+             book.setRecommendationscore(book.getRecommendationscore()+0.5);
 
-        //extra recommendation points according to its rating
-         float rating=book.getRating();
+      //extra recommendation points according to its rating
+             float rating=book.getRating();
 
      //epishs tha mporousame na valoume arnhtiko recscore an to rating isoutai me 1
-          if(rating <2)
+           if(rating <2)
          	book.setRecommendationscore(book.getRecommendationscore() + 0.1);
            else if(rating >=2 && rating< 3)
 	        book.setRecommendationscore(book.getRecommendationscore() + 0.3);
            else if(rating >= 3&& rating<4)
          	book.setRecommendationscore(book.getRecommendationscore() + 0.4);
-          else if(rating >= 4)
+           else if(rating >= 4)
          	book.setRecommendationscore(book.getRecommendationscore() + 0.5);
 		
-              book.setRating(rating);
+           
+           book.setRating(rating);
 	   
    }
 		        
