@@ -10,6 +10,7 @@ public class Book implements Comparable<Book>{
 	private String language;
 	private float rating;
 	private String publisher;
+	private String description;
 	private ArrayList<String> comments;
 	private Boolean borrowed = false;
 	private ArrayList<Borrower> pastBorrowers;
@@ -20,6 +21,7 @@ public class Book implements Comparable<Book>{
 		System.out.println(getTitle());
 		System.out.println(getAuthor());
 		System.out.println(getPublisher());
+		System.out.println(getDescription());
 		System.out.println(getYear());
 		System.out.println(getCategory());
 		System.out.println(getRating());
@@ -196,6 +198,14 @@ public class Book implements Comparable<Book>{
 
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String Description) {
+		this.description = description;
 	}
 
 	public ArrayList<String> getComments() {
