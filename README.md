@@ -7,8 +7,13 @@ The final project will be contained in the C# branch.
 Contributors:
 
 AlexMitsis
+
 Lefteris2310
+
 MariannaEconomidou
+
 stella-dotgr
+
 GeorgiaKp
+
 GeorgeRontoulis
