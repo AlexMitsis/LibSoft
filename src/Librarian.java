@@ -83,18 +83,22 @@ public class Librarian extends Member
 	     }}
 	   else System.out.println("De brethke o daneismos");
 	  }
-	*/
-	/*  public void terminateBookLending(String username,int bookcode)
-  {BookLending bl=BookLending.findBookLending(username, bookcode);
-  if(bl!=null) {
-	  //enhmerwsh olwn twn listwn
-
-	//SThn terminate booklending prepei na enhmerwnei to 	private ArrayList<Borrower> pastBorrowers; tou kathe book
-  }
-  else System.out.println("De brethke o daneismos");
-  }
 */
-	
+	public void terminateBookLending(BookLending abooklending)
+	{
+		ArrayList<BookLending> list1=Main.librarydata.getBorrowedBooks();
+		ArrayList<BookLending> list2=Main.librarydata.getDelayedBooks();
+		
+		list1.remove(abooklending);
+		if(list2.contains(abooklending))
+			{
+				list2.remove(abooklending);
+				Main.librarydata.setDelayedBooks(list2);
+			}
+		
+		Main.librarydata.setBorrowedBooks(list1);
+		
+	}
 	public void bookMonitoring()
 	{
 		ArrayList<BookLending> list=Main.librarydata.getBorrowedBooks();
