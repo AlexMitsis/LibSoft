@@ -1,3 +1,4 @@
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -25,5 +26,30 @@ public class Main
      
 
 		Main.librarydata.Login();
+		
+		char menu_option;
+		do{
+		    System.out.println("Main Menu");
+		    System.out.println("a. Login as Member");
+		    System.out.println("b. Login as Librarian");
+		    System.out.println("c. Quit");
+		    
+		
+		    Scanner input = new Scanner(System.in);
+		    menu_option = input.next().charAt(0);
+		    switch(menu_option){
+		   
+		    case 'a':
+		    	System.out.println("Logging as Member GUI");
+		        break;
+		    case 'b':
+		        System.out.println("Logging as Librarian GUI");
+		        break;
+		    case 'c':
+		        System.out.println("Quitting");
+		        break;
+		    }
+
+		   } while(menu_option !='a' && menu_option!='b' && menu_option!='c');
 	   
 }}

@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Librarian extends Member
 {
@@ -11,6 +12,102 @@ public class Librarian extends Member
 		
 	}
 	
+	public void menuLibrarian() {
+		int option;
+		
+		do{
+		    System.out.println("Execute a task");
+		    System.out.println("1. Add a Book");
+		    System.out.println("2. Discard a Book");
+		    System.out.println("3. Terminate Membership");
+		    System.out.println("4. Set a Book Borrowed");
+		    System.out.println("5. Terminate a Book Lending");
+		    System.out.println("6. Monitor all the books");
+		    System.out.println("7. Quit");
+		    
+		    
+		    Scanner input = new Scanner(System.in);
+		    option = input.nextInt();
+
+
+		    switch(option){
+		   
+		    case 1:
+		    	{System.out.println("Adding a Book");
+		    	
+		    	System.out.println("Enter bookcode");
+		    	int code=input.nextInt();
+		    	System.out.println("Enter title");
+		    	String title=input.next();
+		    	System.out.println("Enter author");
+				String author_name=input.next();
+				Author author= new Author(author_name);
+				System.out.println("Enter category");
+				String category=input.next();
+				System.out.println("Enter year");
+				int year=input.nextInt();
+				System.out.println("Enter language");
+				String language=input.next();
+				System.out.println("Enter rating");
+				float rating=input.nextFloat();
+				System.out.println("Enter publisher");
+				String publisher=input.next();
+				
+				System.out.println("Enter number of comments");
+				int numberOfComments = input.nextInt();
+			    ArrayList<String> comments = new ArrayList<String>();
+			    for (int i = 0; i< numberOfComments; i++){
+			    	System.out.println("Enter comment");
+			    	String comment=input.next();
+			    	comments.add(comment);
+			    }
+			    System.out.println("Enter if book is borrowed");
+				boolean borrowed=input.nextBoolean();
+				
+		    	
+		    	Book aBook = new Book(code,title,author,category,year,language,rating,publisher,comments,borrowed);
+		    	
+		    	addBook(aBook);
+		    	}
+		        break;
+		    case 2:
+		    	System.out.println("Enter bookcode");
+		    	int code=input.nextInt();
+		    	Book aBook=Book.findBook(code);
+		    	bookDiscarding(aBook);
+		        System.out.println("Discarding the Book");
+		        break;
+		    case 3:
+		    	System.out.println("Enter name");
+		    	String username=input.next();
+		    	Borrower b = Borrower.FindBorrower(username);
+		        System.out.println("Terminating the Membership");
+		        break;
+		    case 4:
+		    	System.out.println("Enter bookcode");
+		    	int code1=input.nextInt();
+		    	Book aBook1=Book.findBook(code1);
+		    	aBook1.toggleAvailability();
+		        System.out.println("Setting the Book Borrowed");
+		        break;
+		    case 5:
+		    	System.out.println("Enter bookcode");
+		    	int bookcode=input.nextInt();
+		    	System.out.println("Enter borrower's name");
+		    	String username1=input.next();
+		    	BookLending aBl=BookLending.findBookLending(username1,bookcode);
+		        System.out.println("Terminating a Book Lending");
+		        break;
+		    case 6:
+		    	bookMonitoring();
+		        System.out.println("Monitoring Books");
+		    case 7:
+		        System.out.println("Quitting");
+		        break;
+		    }
+
+		    } while(option<=0 && option >8);
+	}
 	
 	public void addBook(Book aBook)
 	{
