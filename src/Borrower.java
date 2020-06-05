@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Borrower extends Member implements Comparable<Borrower>{
     public final int MAxBorrowedBooks=3;
@@ -35,6 +36,61 @@ public class Borrower extends Member implements Comparable<Borrower>{
 	 {return b;}}
 	 return null;
 	 }
+	
+	public void setListOfFollowingAuthors(Author x) {
+		x.addFollower(this);
+	}
+	
+	public void addToReadList(Book b) {
+		toReadList.add(b);
+	}
+	
+	public void addToFavourites(Book b) {
+		favouriteList.add(b);
+	}
+	
+	public void printToReadList(ArrayList<Book> toReadList) {
+		for (Book b:toReadList) {
+			System.out.println(b.getTitle());
+		}
+	}
+	
+	public void printFavouritesList(ArrayList<Book> favouriteList) {
+		for (Book b:favouriteList) {
+			System.out.println(b.getTitle());
+		}
+	}
+	
+	public void donateBook() {
+		
+		Scanner input = new Scanner(System.in);
+		System.out.println("Type the information of the book you want to donate");
+    	
+    	System.out.println("Enter bookcode");
+    	int code=input.nextInt();
+    	System.out.println("Enter title");
+    	String title=input.next();
+    	System.out.println("Enter author");
+		String author_name=input.next();
+		Author author= new Author(author_name);
+		System.out.println("Enter category");
+		String category=input.next();
+		System.out.println("Enter year");
+		int year=input.nextInt();
+		System.out.println("Enter language");
+		String language=input.next();
+		System.out.println("Enter rating");
+		float rating=input.nextFloat();
+		System.out.println("Enter publisher");
+		String publisher=input.next(); 
+    	
+    	Book donatedBook = new Book(code,title,author,category,year,language,rating,publisher,null,false);
+		Message donationMessage = new Message(this,donatedBook);
+		Message.messageToLibrary(donationMessage);
+	}
+	
+	
+	//getters & setters
 	
 	public ArrayList<Author> getAuthorsFollowing() {
 		return authorsFollowing;

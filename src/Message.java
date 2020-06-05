@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Message {
 	String message;
 	Member sender;
+	Book bookDonated;
 	//constructor
 	public Message(String message, Member sender) {
 	
@@ -10,6 +11,11 @@ public class Message {
 		this.sender = sender;
 		}
 		
+	public Message(Borrower sender, Book bookDonated) {
+		this.sender = sender;
+		this.bookDonated = bookDonated;
+	}
+	
 	public String getMessage() {
 		return message;
 	}
