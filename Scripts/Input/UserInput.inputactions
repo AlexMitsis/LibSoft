@@ -1,0 +1,33 @@
+{
+    "name": "UserInput",
+    "maps": [
+        {
+            "name": "UI",
+            "id": "416d645a-762a-47ee-8b9e-5479d54c809e",
+            "actions": [
+                {
+                    "name": "ChangeTab",
+                    "type": "Button",
+                    "id": "ebe00e5b-a83c-4dfd-8c70-2c5f6258ffb5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cb5852ed-bbae-4d97-b9fd-8e390e712692",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeTab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
