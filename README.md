@@ -1,20 +1,9 @@
-Library application project.
+Οδηγίες για testing:
 
-The application will initially be developed in Java with a heavy emphasis on the backend side of things and then converted to C# in order to create the graphical interface.
+Πατήστε το κουμπί register για να φτιάξετε νέο χρήστη. Εισάγετε Username και Password. Πατήστε το κουμπί Register
 
-**WARNING: The Java code is not properly functioning and was only used for design purposes. If you want to run the final projects download and extract the Executable Version Branch. If you want to check the code behind the final application use the C# branch.**
+Πατήστε στο Browse tab. Επιλέξτε ένα βιβλίο. Πατήστε το κουμπί Borrow. Πατήστε πάνω αριστερά στο username σας. Θα δείτε το βιβλίο που δανειστίκατε και την ημερομηνία που πρέπει να το παραδώσετε. 
 
+Πατήστε στο Browse tab. Κάντε αναζήτηση μέσω της πάνω μπάρας και διαλέξτε ένα από τα βιβλία. Πατήστε το πλήκτρο Add to Favorites. Προσθέστε βαθμολογία από τα αστεράκια πάνω δεξιά. Πηγαίνετε στο Favorites tab για να το δείτε. Από εκεί επίσης μπορείτε να το αφαιρέσετε πατώντας ξανά πάνω του και πατώντας το κουμπί REMOVE FROM FAVORITES. Ομοίως η λειτουργία TO READ / READ LATER.
 
-Contributors:
-
-AlexMitsis
-
-Lefteris2310
-
-MariannaEconomidou
-
-stella-dotgr
-
-GeorgiaKp
-
-GeorgeRontoulis
+Πατήστε στο σύμβολο γραναζιού. Πατήστε Log Out. Για να χρησιμοποιείσετε τον λογαριασμό του βιβλιοθηκάριου εισάγετε αυτά τα στοιχεία: Username: Librarian και Password: Librarian. Στο monitor tab μπορείτε να δείτε τους χρήστες και πατώντας πάνω στα ονόματά τους να προβάλετε ποια βιβλία έχουν δανειστεί (τίτλος και ISBN). Στο Post tab μπορείτε να κάνετε μία ανακοίνωση με επικεφαλίδα και περιεχόμενο. Για να ελέγξετε ότι η δημοσίευση ελήφθη από τους χρήστες κάντε log out πάλι μέσω του γραναζιού και κάντε log in με τον λογαριασμό που δημιουργήσατε προηγουμένως ή δημιουργόντας καινούριο. στο tab News πρέπει να εμφανίζεται η ανακοίνωση και πατόντας πάνω της ολόκληρο το περιεχόμενο. 
