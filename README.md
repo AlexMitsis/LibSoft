@@ -1,3 +1,5 @@
+![Alt Text](https://files.catbox.moe/afsqmm.gif)
+
 Library application project.
 
 The application will initially be developed in Java with a heavy emphasis on the backend side of things and then converted to C# in order to create the graphical interface.
