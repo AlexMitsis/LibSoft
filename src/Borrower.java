@@ -13,7 +13,7 @@ public class Borrower extends Member implements Comparable<Borrower>{
 	private LocalDate dateOfLastPenlty;
 	private int numberOfBorrowedBooks;
 	private ArrayList<Author> authorsFollowing;
-		
+		//CONSTRUCTOR
 	public Borrower(String username, String password, ArrayList<Book> currentBorrowedBooks,
 			ArrayList<Book> favouriteList, ArrayList<Book> toReadList, ArrayList<Book> history, boolean ableToBorrow,
 			int numberOfPenalties, LocalDate dateOfLastPenlty, int numberOfBorrowedBooks, ArrayList<Author> authorsFollowing) {
@@ -41,7 +41,7 @@ public class Borrower extends Member implements Comparable<Borrower>{
 		x.addFollower(this);
 	}
 	
-	public void addToReadList(Book b) {
+	public  void addToReadList(Book b) {
 		toReadList.add(b);
 	}
 	
@@ -49,19 +49,19 @@ public class Borrower extends Member implements Comparable<Borrower>{
 		favouriteList.add(b);
 	}
 	
-	public void printToReadList(ArrayList<Book> toReadList) {
+	public  void printToReadList() {
 		for (Book b:toReadList) {
 			System.out.println(b.getTitle());
 		}
 	}
 	
-	public void printFavouritesList(ArrayList<Book> favouriteList) {
+	public  void printFavouritesList() {
 		for (Book b:favouriteList) {
 			System.out.println(b.getTitle());
 		}
 	}
 	
-	public void donateBook() {
+	public  void donateBook() {
 		
 		Scanner input = new Scanner(System.in);
 		System.out.println("Type the information of the book you want to donate");
@@ -88,6 +88,59 @@ public class Borrower extends Member implements Comparable<Borrower>{
 		Message donationMessage = new Message(this,donatedBook);
 		Message.messageToLibrary(donationMessage);
 	}
+	
+	public  void menuBorrower() {
+		int option;
+		
+		do{
+		    System.out.println("Welcome");
+		    System.out.println("1. Search a Book by title");
+		    System.out.println("2. Search by category");
+		    System.out.println("3. Donate Book");
+		    System.out.println("4. See Favourites List");
+		    System.out.println("5. See To Read List");
+		  
+		    System.out.println("6. Quit");
+		    
+		    
+		    Scanner input = new Scanner(System.in);
+		    option = input.nextInt();
+
+
+		    switch(option){
+		   
+		    case 1:
+		    	{System.out.println("Search a Book");
+		    	
+		    	System.out.println("Enter booktitle");
+		        String title=input.next();
+		        LibraryData.searchBook(title);
+		    	}
+		        break;
+		    case 2:
+		    	System.out.println("Enter category");
+		    
+		        String category=input.next();
+		        LibraryData.searchByFilter(category);
+		        break;
+		    case 3:
+		        this.donateBook();
+		        break;
+		    case 4:
+		    	this.printFavouritesList();
+		        break;
+		    case 5:
+		    	this.printToReadList();
+		        break;
+		   
+		    case 6:
+		        System.out.println("Quitting");
+		        break;
+		    }
+
+		    } while(option<=0 && option >6);
+	}
+	
 	
 	
 	//getters & setters

@@ -32,12 +32,12 @@ public class Message {
 	//Static methods are called to send messages
 	//used by librarian for messages to all members.For each member personalized suggestions will be generated
 	
-	public static void MessageToAllMembersWithRecommendations(Message message) {
+	public static void MessageToAllMembersWithRecommendations(String message) {
 		for(Borrower recipient:Main.librarydata.getListOfBorrowers()) 
 		{ArrayList<Book> list=Main.librarydata.createSuggestions(recipient);
 		String books="Here are some books based on your history:";
 		for(Book book:list) {books=books+book.getTitle()+"\n";}//!
-		String finalmessage="Library message:"+message.getMessage()+" Your personalized suggestions: "+books;
+		String finalmessage="Library message:"+message+" Your personalized suggestions: "+books;
 		Message.messageToBorrower(recipient,new Message(finalmessage,Main.librarian));
 		}
 		}

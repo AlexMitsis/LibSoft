@@ -2,9 +2,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
+/*Κλάση <SystemNοtifications>
+Η κλάση αυτή αφορά τις ενέργειες του συστήματος οι οποίες εξαρτώνται άμεσα απο τον χρόνο.
+Συγκεκριμένα εξυπηρετεί τις περιπτώσεις χρήσης:
+Penalty - Use Case Code: 26 (X02),Warning - Use Case Code: 25 (X03)*/
 
 public class SystemNotification extends TimerTask  {
 	
+	//synarthsh-thread gia ton taktiko elegxo twn kyrwsewn.kaleitai sthn main
 	public static void checkforActions() {
 		Warning.checkforWarning();
 		Penalty.checkforPenalty();
@@ -25,7 +30,7 @@ public class SystemNotification extends TimerTask  {
 		public static void checkforWarning() 
 		{   int timeleft=3;
 			ArrayList<BookLending> borrowed=Main.librarydata.getBorrowedBooks();
-			
+			//gia kathe daneizomeno
 			for(BookLending booklending:borrowed)
 			{if(booklending.getTimeLeft(LocalDate.now().plusDays(3))==timeleft){
 				String text="To vivlio"+booklending.getBook().getTitle()+"prepei na epistrafei se 3 meres";

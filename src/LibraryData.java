@@ -27,25 +27,6 @@ public class LibraryData {
 	}
 	
 
-	public void terminateMembership(String username)
-	{
-		Borrower b=Borrower.FindBorrower(username);	    
-		if(b!=null) 
-		{
-			Main.librarydata.getListOfBorrowers().remove(b);	  	
-	        //removes borrower from other lists
-            if(!b.isAbleToBorrow())
-            {
-            	Main.librarydata.getPenaltyList().remove(b);
-            	//removes borrower from authors lists
-            	for(Author author:b.getAuthorsFollowing())
-            		author.deleteFollower(b);
-        	} 
-          }
-		    else
-		    	System.out.println("O xrhsths de brethhke");
-	   
-		}
 	
 	public void Login()//kaleitai otan oxrhsths pathsei to login
 	{ 
@@ -83,9 +64,9 @@ public class LibraryData {
 		}
         
         if(islibrarian) 
-        {/*dei3e th diepafh bibliothhkariou*/}
+        {Librarian.menuLibrarian();}
         else 
-        {	/*dei3e thn diepafh xrhsth*/}
+        {	potential.menuBorrower();}
         
 	}
    	
@@ -98,12 +79,12 @@ public class LibraryData {
 		author.removeBook(xbook);
     }
     	
-	public ArrayList<Book> searchBook(String Title)
+	public  static ArrayList<Book> searchBook(String Title)
 	{   
 		ArrayList<Book> blist=new ArrayList<Book>();
 		boolean found = false;
 		
-		for(Book  aBook : ListOfBooks)
+		for(Book  aBook : Main.librarydata.ListOfBooks)
 		{
 			if(aBook.getTitle().equalsIgnoreCase(Title))
 			{   
@@ -116,10 +97,10 @@ public class LibraryData {
 		return blist;//prepei na emfanizetai h lista me ta biblia.anoigei diepafh apo edw kai tha einia void
 	}
 	
-	public ArrayList<Book> searchByFilter(String WantedCategory)
+	public static ArrayList<Book> searchByFilter(String WantedCategory)
 	{
 		ArrayList<Book> wantedCategoryBooks = new ArrayList<Book>();
-		for(Book  aBook : ListOfBooks)
+		for(Book  aBook : Main.librarydata.ListOfBooks)
 		{
 			if(aBook.getCategory().equalsIgnoreCase(WantedCategory)) 
 			{ 

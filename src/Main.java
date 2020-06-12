@@ -24,32 +24,7 @@ public class Main
 	 // scheduling the timer instance for every 24 hours
       timer.schedule(check,100,1000*60*60*24); 
      
-
 		Main.librarydata.Login();
-		
-		char menu_option;
-		do{
-		    System.out.println("Main Menu");
-		    System.out.println("a. Login as Member");
-		    System.out.println("b. Login as Librarian");
-		    System.out.println("c. Quit");
-		    
-		
-		    Scanner input = new Scanner(System.in);
-		    menu_option = input.next().charAt(0);
-		    switch(menu_option){
-		   
-		    case 'a':
-		    	System.out.println("Logging as Member GUI");
-		        break;
-		    case 'b':
-		        System.out.println("Logging as Librarian GUI");
-		        break;
-		    case 'c':
-		        System.out.println("Quitting");
-		        break;
-		    }
-
-		   } while(menu_option !='a' && menu_option!='b' && menu_option!='c');
+	
 	   
 }}

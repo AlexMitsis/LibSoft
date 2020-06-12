@@ -12,7 +12,7 @@ public class Librarian extends Member
 		
 	}
 	
-	public void menuLibrarian() {
+	public static void menuLibrarian() {
 		int option;
 		
 		do{
@@ -23,7 +23,8 @@ public class Librarian extends Member
 		    System.out.println("4. Set a Book Borrowed");
 		    System.out.println("5. Terminate a Book Lending");
 		    System.out.println("6. Monitor all the books");
-		    System.out.println("7. Quit");
+		    System.out.println("7. Send Letter with recomendations");
+		    System.out.println("8. Quit");
 		    
 		    
 		    Scanner input = new Scanner(System.in);
@@ -99,14 +100,19 @@ public class Librarian extends Member
 		        System.out.println("Terminating a Book Lending");
 		        break;
 		    case 6:
-		    	bookMonitoring();
+		    	Librarian.bookMonitoring();
 		        System.out.println("Monitoring Books");
 		    case 7:
+		    	System.out.println("write your message");
+		    	String message=input.nextLine();
+		    	Message.MessageToAllMembersWithRecommendations(message);	    
+		    	break;
+		    case 8:
 		        System.out.println("Quitting");
 		        break;
 		    }
 
-		    } while(option<=0 && option >8);
+		    } while(option<=0 && option >9);
 	}
 	
 	public void addBook(Book aBook)
@@ -121,7 +127,7 @@ public class Librarian extends Member
 	}
 	
 	
-	public void bookDiscarding(Book aBook)
+	public static void bookDiscarding(Book aBook)
 	{
 		ArrayList<Book> list=Main.librarydata.getListOfBooks();
 		
@@ -152,6 +158,28 @@ public class Librarian extends Member
 		
 	}
 	
+	/* * ENALLAKTIKOS ORISMOS DIAGRAFhS
+	/*public void terminateMembership(String username)
+	
+	{
+		Borrower b=Borrower.FindBorrower(username);	    
+		if(b!=null) 
+		{
+			Main.librarydata.getListOfBorrowers().remove(b);	  	
+	        //removes borrower from other lists
+            if(!b.isAbleToBorrow())
+            {
+            	Main.librarydata.getPenaltyList().remove(b);
+            	//removes borrower from authors lists
+            	for(Author author:b.getAuthorsFollowing())
+            		author.deleteFollower(b);
+        	} 
+          }
+		    else
+		    	System.out.println("O xrhsths de brethhke");
+	   
+		}*/
+	
 	public void setBookBorrowed(Book b,Borrower m)
 	{
 		ArrayList<BookLending> list=Main.librarydata.getBorrowedBooks();
@@ -168,7 +196,8 @@ public class Librarian extends Member
 		else
 			System.out.println("Unable to borrow at the moment.Book is not availiable, you may have a penalty or you already have borrowed the maximum number of books");
 	}
-	/*public void RenewLendingPeriod(String username,int bookcode)//upotithetai oti bazei swsta ,kaleitai apo ton bibliothhkario
+	
+	public void RenewLendingPeriod(String username,int bookcode)//upotithetai oti bazei swsta ,kaleitai apo ton bibliothhkario
 	  {BookLending bl=BookLending.findBookLending(username, bookcode);
 	   if(bl!=null) {
 	     if(bl.getRenewalCounter()<3) {
@@ -180,7 +209,7 @@ public class Librarian extends Member
 	     }}
 	   else System.out.println("De brethke o daneismos");
 	  }
-*/
+
 	public void terminateBookLending(BookLending abooklending)
 	{
 		ArrayList<BookLending> list1=Main.librarydata.getBorrowedBooks();
@@ -196,7 +225,7 @@ public class Librarian extends Member
 		Main.librarydata.setBorrowedBooks(list1);
 		
 	}
-	public void bookMonitoring()
+	public static void bookMonitoring()
 	{
 		ArrayList<BookLending> list=Main.librarydata.getBorrowedBooks();
 		LocalDate d=LocalDate.now();
@@ -208,4 +237,3 @@ public class Librarian extends Member
 	}
 	
 }
-//thn terminate booklending tha thn balw sthn booklending
