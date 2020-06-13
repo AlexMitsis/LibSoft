@@ -17,7 +17,7 @@ The application will initially be developed in Java with a heavy emphasis on the
 
 ![Alt Text](https://files.catbox.moe/afsqmm.gif)
 
-# Contributors
+## Contributors
 
 * AlexMitsis
 
