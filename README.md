@@ -25,7 +25,3 @@ Lefteris2310
 MariannaEconomidou
 
 stella-dotgr
-
-GeorgiaKp
-
-GeorgeRontoulis
