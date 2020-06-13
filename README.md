@@ -40,7 +40,7 @@
 * Πατήστε Log Out. 
 * Για να χρησιμοποιήσετε τον λογαριασμό του βιβλιοθηκάριου εισάγετε τα παρακάτω στοιχεία:
 
-Username: Librarian | Password: Librarian
+**Username: Librarian | Password: Librarian**
 
 ## Monitor / Post update / News 
 
