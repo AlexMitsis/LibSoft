@@ -19,6 +19,6 @@ The application will initially be developed in Java with a heavy emphasis on the
 
 # Contributors
 
-AlexMitsis
+*AlexMitsis
 
-GeorgeRontoulis
+*GeorgeRontoulis
