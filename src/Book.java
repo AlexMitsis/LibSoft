@@ -16,7 +16,7 @@ public class Book implements Comparable<Book>{
 	private ArrayList<Borrower> pastBorrowers;
 	private double recommendationscore;
 	
-	public void viewBook()
+	public void viewBook(Member person)
 	{
 		System.out.println(getTitle());
 		System.out.println(getAuthor());
@@ -26,6 +26,13 @@ public class Book implements Comparable<Book>{
 		System.out.println(getCategory());
 		System.out.println(getRating());
 		System.out.println(getLanguage());
+		
+		System.out.println("Do you want to borrow this Book? Y/N");
+		Scanner input = new Scanner(System.in);
+		String option=input.next();
+		
+		if (option.equals("Y"))
+			requestBook(person);
 		/*
 		 * edw prepei na emfanistei kai to koumpi
 		 * gia ton daneismo tou bibliou
@@ -39,7 +46,11 @@ public class Book implements Comparable<Book>{
 		}	return null;
 	}
 	
-	
+	public void requestBook(Member person) {
+		  String req = ("The user" + person.getUsername() + "wants me.");
+		  Message requestMessage = new Message(req,person);
+			Message.messageToLibrary(requestMessage);
+	  }
 	
 	public void toggleAvailability()
 	{
