@@ -20,7 +20,16 @@ The application will initially be developed in Java with a heavy emphasis on the
 
 ![Alt Text](https://files.catbox.moe/afsqmm.gif)
 
-### Contributors:
+### Documentation
+
+* [SDD](https://docs.google.com/document/d/1dthS_RyoWCDS2B4kcGonaLtdLjlOyvXd/edit)
+
+* [Inspection Record Document](https://docs.google.com/document/d/1pW6Z1yBM3GGhGo8F_N6Q6804pk_AuFymEB5PynCQZyw/edit?fbclid=IwAR3orfN1UQmU7ikkPAxj1BRFieu16-YLtwlFZeTIhTzbWTz_UuMjJekifVg)
+
+* [Metrics Document](https://docs.google.com/document/d/168hK83_AVdCEtp73hgHxZvgRRl1PpaY8JnHv5cN3aZo/edit?fbclid=IwAR1c7MDOXXdpE9aEMrdTHHDXFSKJO7QnSqQHcdRwW1LSAaSvf2zb2fTFNUA)
+
+
+### Contributors
 
 * AlexMitsis
 
