@@ -20,10 +20,10 @@ The application will initially be developed in Java with a heavy emphasis on the
 
 Contributors:
 
-AlexMitsis
+* AlexMitsis
 
-Lefteris2310
+* Lefteris2310
 
-MariannaEconomidou
+* MariannaEconomidou
 
-stella-dotgr
+* stella-dotgr
