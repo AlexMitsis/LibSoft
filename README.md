@@ -4,13 +4,15 @@
 
 ![Alt Text](https://files.catbox.moe/afsqmm.gif)
 
-## Register as Member
+### Register as Member
 
 * Πατήστε το κουμπί register για να φτιάξετε νέο χρήστη. 
 * Εισάγετε Username και Password. 
 * Πατήστε το κουμπί Register.
 
-## Browse / Borrow
+![Alt Text](https://files.catbox.moe/afsqmm.gif)
+
+### Browse / Borrow
 
 * Πατήστε στο BROWSE tab. 
 * Επιλέξτε ένα βιβλίο.
@@ -18,7 +20,9 @@
 * Πατήστε πάνω αριστερά στο Username σας. 
 * Θα δείτε το βιβλίο που δανειστήκατε και την ημερομηνία που πρέπει να το παραδώσετε. 
 
-## Search / Favorites / To Read
+![Alt Text](https://files.catbox.moe/afsqmm.gif)
+
+### Search / Favorites / To Read
 
 * Πατήστε στο BROWSE tab.
 * Κάντε αναζήτηση μέσω της πάνω μπάρας και διαλέξτε ένα από τα βιβλία.
@@ -32,7 +36,7 @@
 
 ![Alt Text](https://files.catbox.moe/afsqmm.gif)
 
-## Log in as Librarian
+### Log in as Librarian
 
 * Πατήστε στο σύμβολο γραναζιού. 
 * Πατήστε Log Out. 
@@ -40,7 +44,9 @@
 
 **Username: Librarian | Password: Librarian**
 
-## Monitor / Post update / News 
+![Alt Text](https://files.catbox.moe/afsqmm.gif)
+
+### Monitor / Post update / News 
 
 Στο monitor tab μπορείτε να δείτε τους χρήστες και πατώντας πάνω στα ονόματά τους να προβάλετε ποια βιβλία έχουν δανειστεί (τίτλος και ISBN). 
 
