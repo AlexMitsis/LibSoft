@@ -37,3 +37,5 @@ The application will initially be developed in Java with a heavy emphasis on the
 * MariannaEconomidou
 
 * stella-dotgr
+
+* GeorgiaKp
