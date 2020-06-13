@@ -1,4 +1,4 @@
-# LibSoft
+# Libero
 
 Library application project.
 
