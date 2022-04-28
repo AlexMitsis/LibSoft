@@ -4,7 +4,7 @@ Library application project.
 
 The application will initially be developed in Java with a heavy emphasis on the backend side of things and then converted to C# in order to create the graphical interface.
 
-**WARNING: The Java code is not properly functioning and was only used for design purposes. If you want to run the final projects download and extract the Executable Version Branch. If you want to check the code behind the final application use the C# branch.**
+**WARNING: The Java code is not properly functioning and was only used for design purposes as not everyone was comfortable with using C# and Unity. If you want to run the final projects you can download and extract the Executable Version Branch. If you want to check the code behind the final application use the C# branch.**
 
 ![Alt Text](https://files.catbox.moe/afsqmm.gif)
 
@@ -14,7 +14,7 @@ The application will initially be developed in Java with a heavy emphasis on the
 
 Ο κώδικας για την δημιουργία προτάσεων (suggestions, μη C.r.u.d. λειτουργία) υπάρχει στον κώδικα της Java.
 
-**ΠΡΟΣΟΧΗ: Ο κώδικας της Java δεν λειτουργεί κανονικά και χρησιμοποιήθηκε μόνο για σχεδιαστικούς σκοπούς. Αν θέλετε να τρέξετε την τελική εφαρμογή κατεβάστε και αποσυμπιέστε το Executable Version Branch. Αν θέλετε να ελέγξετε τον κώδικα πίσω της τελικής εφαρμογής χρησιμοποιείστε το C# branch.**
+**ΠΡΟΣΟΧΗ: Ο κώδικας της Java δεν λειτουργεί κανονικά και χρησιμοποιήθηκε μόνο για σχεδιαστικούς σκοπούς καθώς δεν ήταν όλα τα μέλη άνετα με την χρήση της C# και της Unity. Αν θέλετε να τρέξετε την τελική εφαρμογή μπορείτε να κατεβάσετε και να αποσυμπιέστε το Executable Version Branch. Αν θέλετε να ελέγξετε τον κώδικα πίσω της τελικής εφαρμογής χρησιμοποιείστε το C# branch.**
 
 ![Alt Text](https://files.catbox.moe/afsqmm.gif)
 
