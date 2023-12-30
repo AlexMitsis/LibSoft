@@ -2,6 +2,54 @@
 
 Library application project.
 
+### Register as Member
+
+* Πατήστε το κουμπί register για να φτιάξετε νέο χρήστη. 
+* Εισάγετε Username και Password. 
+* Πατήστε το κουμπί Register.
+
+![Alt Text](https://files.catbox.moe/afsqmm.gif)
+
+### Browse / Borrow
+
+* Πατήστε στο BROWSE tab. 
+* Επιλέξτε ένα βιβλίο.
+* Πατήστε το κουμπί BORROW. 
+* Πατήστε πάνω αριστερά στο Username σας. 
+* Θα δείτε το βιβλίο που δανειστήκατε και την ημερομηνία που πρέπει να το παραδώσετε. 
+
+![Alt Text](https://files.catbox.moe/afsqmm.gif)
+
+### Search / Favorites / To Read
+
+* Πατήστε στο BROWSE tab.
+* Κάντε αναζήτηση μέσω της πάνω μπάρας και διαλέξτε ένα από τα βιβλία.
+* Πατήστε το πλήκτρο ADD TO FAVORITES.
+* Προσθέστε βαθμολογία από τα αστεράκια πάνω δεξιά.
+* Αφήστε ένα σχόλιο στα comments. 
+* Πηγαίνετε στο FAVORITES tab για να το δείτε.
+* Από εκεί επίσης μπορείτε να το αφαιρέσετε πατώντας ξανά πάνω του και πατώντας το κουμπί REMOVE FROM FAVORITES.
+
+Ομοίως η λειτουργία TO READ / READ LATER.
+
+![Alt Text](https://files.catbox.moe/afsqmm.gif)
+
+### Log in as Librarian
+
+* Πατήστε στο σύμβολο γραναζιού. 
+* Πατήστε Log Out. 
+* Για να χρησιμοποιήσετε τον λογαριασμό του βιβλιοθηκάριου εισάγετε τα παρακάτω στοιχεία:
+
+**Username: Librarian | Password: Librarian**
+
+![Alt Text](https://files.catbox.moe/afsqmm.gif)
+
+### Monitor / Post update / News 
+
+Στο monitor tab μπορείτε να δείτε τους χρήστες και πατώντας πάνω στα ονόματά τους να προβάλετε ποια βιβλία έχουν δανειστεί (τίτλος και ISBN). 
+
+![Alt Text](https://files.catbox.moe/afsqmm.gif)
+
 The application will initially be developed in Java with a heavy emphasis on the backend side of things and then converted to C# in order to create the graphical interface.
 
 **WARNING: The Java code is not properly functioning and was only used for design purposes as not everyone was comfortable with using C# and Unity. If you want to run the final projects you can download and extract the Executable Version Branch. If you want to check the code behind the final application use the C# branch.**
